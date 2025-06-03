@@ -4,10 +4,16 @@ import videohomepage from "../../assets/homepage.mp4";
 
 const HomePage = (props) => {
   return (
-    <Container className="homepage-container">
-      <Row className="mt-3">
-        <Col xs={{ span: 12, order: 2 }} md={{ span: 6, order: 1 }}>
-          <div className="video-homepage">
+    <Container className="homepage-container mt-3">
+      <Row className="">
+        <Col
+          xs={{ span: 12, order: 2 }}
+          sm={{ span: 12, order: 2 }}
+          md={{ span: 12, order: 2 }}
+          lg={{ span: 6, order: 1 }}
+          className="homepage-video"
+        >
+          <div>
             <video
               autoPlay
               muted
@@ -27,36 +33,63 @@ const HomePage = (props) => {
         </Col>
         <Col
           xs={{ span: 12, order: 1 }}
-          md={{ span: 6, order: 2 }}
-          className="d-flex align-items-center justify-content-center "
+          sm={{ span: 12, order: 1 }}
+          md={{ span: 12, order: 1 }}
+          lg={{ span: 6, order: 2 }}
+          className="homepage-content d-flex flex-column align-items-center my-5  "
         >
-          <div className="info-homepage text-center w-100 ">
-            <p className="fw-normal fs-1 ">Challenge your mind!</p>
-            <TypeAnimation
-              sequence={[
-                "Think fast 🔥",
-                1500,
-                "Click smart 🧠",
-                1500,
-                "Win big 🎯",
-                1500,
-                "Your brain vs. the quiz!",
-                1500,
-              ]}
-              speed={50}
-              style={{
-                fontSize: "2em",
-                color: "#ff49c1",
-                fontWeight: "500",
-              }}
-              repeat={Infinity}
-            />
-            <p
-              className="fw-normal fs-1 mt-3"
-              style={{ marginTop: "20px", color: "#333" }}
-            >
-              Ready to take the challenge?
-            </p>
+          <div className="homepage-content-all text-center text-md-start ps-5 py-3">
+            <div className="homepage-title text-start w-100 ">
+              <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                <h1 style={{ fontSize: "clamp(1.5rem, 5vw, 2rem)" }}>
+                  Challenge your mind!
+                </h1>
+              </Col>
+              <TypeAnimation
+                sequence={[
+                  "Think fast 🔥",
+                  1500,
+                  "Click smart 🧠",
+                  1500,
+                  "Win big 🎯",
+                  1500,
+                  "Your brain vs. the quiz!",
+                  1500,
+                ]}
+                speed={50}
+                style={{
+                  fontSize: "clamp(1.2rem, 4vw, 1.5rem)",
+                  color: "#ff49c1",
+                  fontWeight: "500",
+                }}
+                repeat={Infinity}
+              />
+              <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                <h2
+                  className="mt-3"
+                  style={{ fontSize: "clamp(1.5rem, 5vw, 2rem)" }}
+                >
+                  Ready to take the challenge?
+                </h2>
+              </Col>
+            </div>
+            <div className="homepage-text text-start my-5">
+              <Col xs={12} sm={12} md={8} lg={10} xl={9}>
+                <p style={{ fontSize: "clamp(1rem, 3vw, 1.25rem)" }}>
+                  Create questions and tests quickly with smart solutions.
+                  <strong> MQ </strong>
+                  leverages the power of technology to enhance your learning
+                  experience.
+                </p>
+              </Col>
+            </div>
+            <div className="btn-homepage text-start ">
+              <Col xs={12} sm={6} md={4} lg={6} xl={5}>
+                <button className="btn-get-started w-100 ">
+                  Get-started - It's free
+                </button>
+              </Col>
+            </div>
           </div>
         </Col>
       </Row>
