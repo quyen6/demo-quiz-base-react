@@ -9,14 +9,59 @@ body {
 
 .app-container {
   .header-container {
-    nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
-      background-color: #eee;
-    }
     .navbar-nav {
       .nav-link {
         &.active {
-          color: red;
+          color: #018486;
         }
+      }
+    }
+
+    .btn-login {
+      margin-right: 10px;
+      border: 2px solid transparent;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      position: relative;
+      background: linear-gradient(white, white) padding-box,
+        linear-gradient(45deg, #ff49c1, #7b2ff7) border-box;
+      overflow: hidden;
+      z-index: 1;
+      color: black;
+
+      &::after {
+        background: linear-gradient(45deg, #ff49c1, #7b2ff7);
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(-100%, 0);
+        transition: 0.3s transform linear;
+        z-index: -1;
+      }
+
+      &:hover::after {
+        transform: translate(0, 0);
+      }
+      &:hover {
+        color: white;
+      }
+    }
+    .btn-signup {
+      background-color: black;
+      color: white;
+      margin-right: 10px;
+      border: 2px solid transparent;
+      padding: 10px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      &:hover {
+        opacity: 0.85;
+        transition: all 0.2s linear;
       }
     }
   }
