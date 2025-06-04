@@ -36,12 +36,12 @@ const HomePage = (props) => {
           sm={{ span: 12, order: 1 }}
           md={{ span: 12, order: 1 }}
           lg={{ span: 6, order: 2 }}
-          className="homepage-content d-flex flex-column align-items-center my-5  "
+          className="homepage-content d-flex flex-column align-items-center my-xxl-5  "
         >
-          <div className="homepage-content-all text-center text-md-start ps-5 py-3">
+          <div className="homepage-content-all text-center text-md-start ps-xxl-5 ps-xl-4 py-4 ">
             <div className="homepage-title text-start w-100 ">
               <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                <h1 style={{ fontSize: "clamp(1.5rem, 5vw, 2rem)" }}>
+                <h1 style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}>
                   Challenge your mind!
                 </h1>
               </Col>
@@ -58,7 +58,7 @@ const HomePage = (props) => {
                 ]}
                 speed={50}
                 style={{
-                  fontSize: "clamp(1.2rem, 4vw, 1.5rem)",
+                  fontSize: "clamp(1.5rem, 4vw, 3rem)",
                   color: "#ff49c1",
                   fontWeight: "500",
                 }}
@@ -66,14 +66,14 @@ const HomePage = (props) => {
               />
               <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                 <h2
-                  className="mt-3"
-                  style={{ fontSize: "clamp(1.5rem, 5vw, 2rem)" }}
+                  style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
+                  className="fs-5-xl"
                 >
-                  Ready to take the challenge?
+                  Are you ready ?
                 </h2>
               </Col>
             </div>
-            <div className="homepage-text text-start my-5">
+            <div className="homepage-text text-start  my-xxl-5 my-lg-5 ">
               <Col xs={12} sm={12} md={8} lg={10} xl={9}>
                 <p style={{ fontSize: "clamp(1rem, 3vw, 1.25rem)" }}>
                   Create questions and tests quickly with smart solutions.
@@ -84,7 +84,7 @@ const HomePage = (props) => {
               </Col>
             </div>
             <div className="btn-homepage text-start ">
-              <Col xs={12} sm={6} md={4} lg={6} xl={5}>
+              <Col xs={12} sm={6} md={4} lg={6} xl={6}>
                 <button className="btn-get-started w-100 ">
                   Get-started - It's free
                 </button>

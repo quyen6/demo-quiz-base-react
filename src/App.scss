@@ -88,10 +88,16 @@ body {
 
       .homepage-content-all {
         padding-left: 10px !important;
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
       }
       .homepage-title p {
         font-size: 24px !important;
         font-weight: 600;
+      }
+      .homepage-text {
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
       }
     }
   }
@@ -102,20 +108,12 @@ body {
     }
     .homepage-content {
       order: 1 !important;
-      width: 100% !important;
-      margin-top: 0 !important;
-      padding: 0 !important;
       display: flex;
       justify-content: center !important;
 
       .homepage-content-all {
-        padding: 0 !important;
-
         .homepage-title {
           text-align: center !important;
-        }
-        .homepage-title h2 {
-          margin: 0 !important;
         }
 
         .homepage-text,
@@ -123,23 +121,20 @@ body {
           display: flex;
           justify-content: center;
         }
-        .homepage-text {
-          margin: 10px 0 !important;
-        }
+
         .homepage-text p {
           text-align: center;
-          margin: 0 !important;
         }
 
-        .homepage-container .btn-get-started {
+        .btn-get-started {
           padding: 10px !important;
         }
       }
     }
   }
-  @media (max-width: 576px) {
-    .homepage-content {
-      padding: 12px !important;
-    }
-  }
+  // @media (max-width: 576px) {
+  //   .homepage-content {
+  //     padding: 12px !important;
+  //   }
+  // }
 }
