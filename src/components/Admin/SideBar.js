@@ -15,6 +15,7 @@ import {
   faTableColumns,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -31,7 +32,7 @@ const SideBar = () => {
           left: 0,
           width: collapsed ? "80px" : "250px",
           zIndex: 1000,
-          transition: "all 0.4s linear",
+          transition: "all 0.25s linear",
           borderRight: "1px solid rgb(239, 239, 239)",
         },
       }}
@@ -61,6 +62,7 @@ const SideBar = () => {
           }
         >
           <MenuItem
+            component={<Link to="/admin" />}
             icon={
               <FontAwesomeIcon
                 icon={faTableColumns}
@@ -68,7 +70,7 @@ const SideBar = () => {
               />
             }
           >
-            &nbsp; Dashboard
+            Dashboard
           </MenuItem>
           <SubMenu
             label="Features"
@@ -76,7 +78,10 @@ const SideBar = () => {
               <FontAwesomeIcon icon={faGears} style={{ fontSize: "20px" }} />
             }
           >
-            <MenuItem icon={<FontAwesomeIcon icon={faUsers} />}>
+            <MenuItem
+              icon={<FontAwesomeIcon icon={faUsers} />}
+              component={<Link to="manage-users" />}
+            >
               &nbsp; Manage Users
             </MenuItem>
             <MenuItem icon={<FontAwesomeIcon icon={faNoteSticky} />}>
