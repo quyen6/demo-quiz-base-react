@@ -3,6 +3,7 @@ import "./ManageUser.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import TableUser from "./TableUser";
 const ManageUsers = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
 
@@ -20,7 +21,7 @@ const ManageUsers = (props) => {
           </button>
         </div>
         <div className="table-users-container">
-          <p style={{ fontSize: "20px" }}>Table users</p>
+          <TableUser />
         </div>
         <ModalCreateUser
           show={showModalCreateUser}
