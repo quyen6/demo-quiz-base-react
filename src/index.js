@@ -11,6 +11,7 @@ import Admin from "./components/Admin/Admin";
 import HomePage from "./components/Home/HomePage";
 import ManageUsers from "./components/Admin/Content/ManageUsers";
 import Dashboard from "./components/Admin/Content/Dashboard";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

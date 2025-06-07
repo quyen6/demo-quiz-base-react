@@ -1,7 +1,9 @@
-import { faCloudArrowUp, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useRef, useState } from "react";
+
+import { toast } from "react-toastify";
+import { faCloudArrowUp, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -46,19 +48,38 @@ const ModalCreateUser = (props) => {
     inputRef.current.value = null;
   };
 
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+  const validatePassword = (password) => {
+    return (
+      /[A-Z]/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      /[^A-Za-z0-9]/.test(password) &&
+      password.length > 4
+    );
+  };
   const handleSubmitCreateUser = async () => {
     //validate
+    const isValidEmail = validateEmail(email);
+    const isValidPassword = validatePassword(password);
+    if (!isValidEmail) {
+      toast.error("Invalid Email ");
+      return;
+    }
+    if (!isValidPassword) {
+      toast.error("Invalid Password ");
+      return;
+    }
 
     //call api
 
-    // let data = {
-    //   email: email,
-    //   password: password,
-    //   username: username,
-    //   role: role,
-    //   userImage: selectedFile,
-    // };
-    // console.log(data);
+    // submit data
     const data = new FormData();
     data.append("email", email);
     data.append("password", password);
@@ -70,15 +91,19 @@ const ModalCreateUser = (props) => {
       "http://localhost:8081/api/v1/participant",
       data
     );
-    console.log("🚀 ~ handleSubmitCreateUser ~ res:", res);
+    console.log("🚀 ~ handleSubmitCreateUser ~ res:", res.data);
+    if (res.data && res.data.EC === 0) {
+      //EC : error code
+      toast.success(res.data.EM); //EM: error message
+      handleClose();
+    }
+    if (res.data && res.data.EC !== 0) {
+      toast.error(res.data.EM);
+    }
   };
 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button> */}
-
       <Modal
         show={show}
         onHide={handleClose}
@@ -107,6 +132,7 @@ const ModalCreateUser = (props) => {
                 type="password"
                 className="form-control"
                 value={password}
+                required
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -117,6 +143,7 @@ const ModalCreateUser = (props) => {
                 className="form-control"
                 placeholder=""
                 value={username}
+                required
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
