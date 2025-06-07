@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useRef, useState } from "react";
 
 import { toast } from "react-toastify";
@@ -6,6 +5,7 @@ import { faCloudArrowUp, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { postCreateUser } from "../../../services/apiServices";
 
 const ModalCreateUser = (props) => {
   const { show, setShow } = props;
@@ -66,12 +66,12 @@ const ModalCreateUser = (props) => {
   };
   const handleSubmitCreateUser = async () => {
     //validate
-    const isValidEmail = validateEmail(email);
+    // const isValidEmail = validateEmail(email);
     const isValidPassword = validatePassword(password);
-    if (!isValidEmail) {
-      toast.error("Invalid Email ");
-      return;
-    }
+    // if (!isValidEmail) {
+    //   toast.error("Invalid Email ");
+    //   return;
+    // }
     if (!isValidPassword) {
       toast.error("Invalid Password ");
       return;
@@ -79,26 +79,21 @@ const ModalCreateUser = (props) => {
 
     //call api
 
-    // submit data
-    const data = new FormData();
-    data.append("email", email);
-    data.append("password", password);
-    data.append("username", username);
-    data.append("role", role);
-    data.append("userImage", selectedFile);
-
-    let res = await axios.post(
-      "http://localhost:8081/api/v1/participant",
-      data
+    let data = await postCreateUser(
+      email,
+      password,
+      username,
+      role,
+      selectedFile
     );
-    console.log("🚀 ~ handleSubmitCreateUser ~ res:", res.data);
-    if (res.data && res.data.EC === 0) {
+
+    if (data && data.EC === 0) {
       //EC : error code
-      toast.success(res.data.EM); //EM: error message
+      toast.success(data.EM); //EM: error message
       handleClose();
     }
-    if (res.data && res.data.EC !== 0) {
-      toast.error(res.data.EM);
+    if (data && data.EC !== 0) {
+      toast.error(data.EM);
     }
   };
 
@@ -123,7 +118,6 @@ const ModalCreateUser = (props) => {
                 className="form-control"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
             </div>
             <div className="col-md-6">
@@ -132,7 +126,6 @@ const ModalCreateUser = (props) => {
                 type="password"
                 className="form-control"
                 value={password}
-                required
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
