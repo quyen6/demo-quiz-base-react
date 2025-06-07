@@ -57,10 +57,10 @@ const ModalCreateUser = (props) => {
   };
   const validatePassword = (password) => {
     return (
-      /[A-Z]/.test(password) &&
-      /[a-z]/.test(password) &&
-      /[0-9]/.test(password) &&
-      /[^A-Za-z0-9]/.test(password) &&
+      // /[A-Z]/.test(password) &&
+      // /[a-z]/.test(password) &&
+      // /[0-9]/.test(password) &&
+      // /[^A-Za-z0-9]/.test(password) &&
       password.length > 4
     );
   };
@@ -91,6 +91,7 @@ const ModalCreateUser = (props) => {
       //EC : error code
       toast.success(data.EM); //EM: error message
       handleClose();
+      await props.fetchListUser();
     }
     if (data && data.EC !== 0) {
       toast.error(data.EM);

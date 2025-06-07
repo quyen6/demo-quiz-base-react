@@ -1,21 +1,10 @@
-import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { getAllUser } from "../../../services/apiServices";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const TableUser = (props) => {
-  const [listUser, setListUser] = useState([]);
-  const fetchListUser = async () => {
-    let res = await getAllUser();
-    if (res.EC === 0) {
-      setListUser(res.DT);
-    }
-  };
-  useEffect(() => {
-    fetchListUser();
-  }, []);
-
+  const { listUser } = props;
   return (
     <Table striped bordered hover>
       <thead>
@@ -56,7 +45,7 @@ const TableUser = (props) => {
           })}
         {listUser && listUser.length === 0 && (
           <tr>
-            <td colSpan={4} style={{ textAlign: "center" }}>
+            <td colSpan={5} style={{ textAlign: "center" }}>
               No data
             </td>
           </tr>
