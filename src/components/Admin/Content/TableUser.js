@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const TableUser = (props) => {
-  const { listUser } = props;
+  const { listUser, handleClickBtnUpdateUser } = props;
   return (
     <Table striped bordered hover>
       <thead>
@@ -31,7 +31,10 @@ const TableUser = (props) => {
                     <FontAwesomeIcon icon={faEye} />
                     &nbsp; View
                   </button>
-                  <button className="btn btn-warning">
+                  <button
+                    className="btn btn-warning"
+                    onClick={() => handleClickBtnUpdateUser(user)}
+                  >
                     <FontAwesomeIcon icon={faPen} />
                     &nbsp; Edit
                   </button>
