@@ -15,8 +15,8 @@ const ModalUpdateUser = (props) => {
     fetchListUser,
     dataUpdate,
     resetUpdateData,
-    setCurrentPage,
     fetchListUserWithPaginate,
+    currentPage,
   } = props;
 
   const [email, setEmail] = useState("");
@@ -80,8 +80,7 @@ const ModalUpdateUser = (props) => {
       //EC : error code
       toast.success(data.EM); //EM: error message
       handleClose();
-      setCurrentPage(1);
-      await fetchListUserWithPaginate(1);
+      await fetchListUserWithPaginate(currentPage);
     }
     if (data && data.EC !== 0) {
       toast.error(data.EM);
