@@ -7,17 +7,27 @@ import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 import TableUser from "./TableUser";
 import { getAllUser } from "../../../services/apiServices";
+import ModalViewUser from "./ModalViewUser";
+import ModalDeleteUser from "./ModalDeleteUser";
 
 const ManageUsers = (props) => {
   // Add
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   // Update/Edit
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
+  // View
+  const [showModalViewUser, setShowModalViewUser] = useState(false);
+  // Delete
+  const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
 
   const [listUser, setListUser] = useState([]);
 
   //prop user when click btn edit
   const [dataUpdate, setDataUpdate] = useState({});
+  //prop user when click btn view
+  const [dataUser, setDataUser] = useState({});
+  //prop user when click btn delete
+  const [dataDelete, setDataDelete] = useState({});
 
   // call api
   const fetchListUser = async () => {
@@ -31,12 +41,20 @@ const ManageUsers = (props) => {
   }, []);
 
   const handleClickBtnUpdateUser = (user) => {
-    console.log("🚀 ~ handleClickBtnUpdateUser ~ user:", user);
     setDataUpdate(user);
-    setShowModalUpdateUser(true);
   };
   const resetUpdateData = () => {
     setDataUpdate("");
+  };
+
+  const handleClickBtnViewUser = (user) => {
+    setDataUser(user);
+    setShowModalViewUser(true);
+  };
+  const handleClickBtnDeleteUser = (user) => {
+    console.log("🚀 ~ handleClickBtnDeleteUser ~ user:", user);
+    setDataDelete(user);
+    setShowModalDeleteUser(true);
   };
 
   return (
@@ -56,6 +74,8 @@ const ManageUsers = (props) => {
           <TableUser
             listUser={listUser}
             handleClickBtnUpdateUser={handleClickBtnUpdateUser}
+            handleClickBtnViewUser={handleClickBtnViewUser}
+            handleClickBtnDeleteUser={handleClickBtnDeleteUser}
           />
         </div>
         <ModalCreateUser
@@ -69,6 +89,19 @@ const ManageUsers = (props) => {
           fetchListUser={fetchListUser}
           dataUpdate={dataUpdate}
           resetUpdateData={resetUpdateData}
+        />
+        <ModalViewUser
+          show={showModalViewUser}
+          setShow={setShowModalViewUser}
+          dataUser={dataUser}
+          setDataUser={setDataUser}
+        />
+        <ModalDeleteUser
+          show={showModalDeleteUser}
+          setShow={setShowModalDeleteUser}
+          dataDelete={dataDelete}
+          setDataUser={setDataDelete}
+          fetchListUser={fetchListUser}
         />
       </div>
     </div>

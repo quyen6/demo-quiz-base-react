@@ -4,7 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const TableUser = (props) => {
-  const { listUser, handleClickBtnUpdateUser } = props;
+  const {
+    listUser,
+    handleClickBtnUpdateUser,
+    handleClickBtnViewUser,
+    handleClickBtnDeleteUser,
+  } = props;
   return (
     <Table striped bordered hover>
       <thead>
@@ -27,7 +32,10 @@ const TableUser = (props) => {
                 <td>{user.email}</td>
                 <td>{user.role}</td>
                 <td className="d-flex gap-3">
-                  <button className="btn btn-secondary">
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => handleClickBtnViewUser(user)}
+                  >
                     <FontAwesomeIcon icon={faEye} />
                     &nbsp; View
                   </button>
@@ -38,7 +46,10 @@ const TableUser = (props) => {
                     <FontAwesomeIcon icon={faPen} />
                     &nbsp; Edit
                   </button>
-                  <button className="btn btn-danger">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleClickBtnDeleteUser(user)}
+                  >
                     <FontAwesomeIcon icon={faTrash} />
                     &nbsp; Delete
                   </button>
