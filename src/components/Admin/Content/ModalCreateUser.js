@@ -8,7 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import { postCreateUser } from "../../../services/apiServices";
 
 const ModalCreateUser = (props) => {
-  const { show, setShow } = props;
+  const { show, setShow, setCurrentPage, fetchListUserWithPaginate } = props;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -91,7 +91,9 @@ const ModalCreateUser = (props) => {
       //EC : error code
       toast.success(data.EM); //EM: error message
       handleClose();
-      await props.fetchListUser();
+      // await props.fetchListUser();
+      setCurrentPage(1);
+      await fetchListUserWithPaginate(1);
     }
     if (data && data.EC !== 0) {
       toast.error(data.EM);

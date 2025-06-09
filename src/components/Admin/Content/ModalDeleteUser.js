@@ -1,11 +1,19 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { deleteUser } from "../../../services/apiServices";
-import avatar from "../../../assets/no-avatar.png";
+import avatar from "../../../assets/avatar.png";
 import { toast } from "react-toastify";
 
 const ModalDeleteUser = (props) => {
-  const { show, setShow, dataDelete, fetchListUser } = props;
+  const {
+    show,
+    setShow,
+    dataDelete,
+    fetchListUser,
+    fetchListUserWithPaginate,
+    currentPage,
+    setCurrentPage,
+  } = props;
 
   const handleClose = () => setShow(false);
 
@@ -16,7 +24,10 @@ const ModalDeleteUser = (props) => {
       //EC : error code
       toast.success(data.EM); //EM: error message
       handleClose();
-      await fetchListUser();
+      //   await fetchListUser();
+
+      setCurrentPage(1);
+      await fetchListUserWithPaginate(1);
     }
     if (data && data.EC !== 0) {
       toast.error(data.EM);

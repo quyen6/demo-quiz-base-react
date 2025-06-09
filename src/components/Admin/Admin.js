@@ -9,10 +9,7 @@ const Admin = (props) => {
       <div className="admin-sidebar">
         <SideBar />
       </div>
-      <div
-        className="admin-content"
-        style={{ height: "1200px", width: "100%" }}
-      >
+      <div className="admin-content" style={{ height: "auto", width: "100%" }}>
         <div className="admin-header">huhuhuhhhhhhhhhhhhhhhh</div>
         <div className="admin-main">
           <Outlet />

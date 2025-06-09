@@ -15,7 +15,7 @@ import {
   faTableColumns,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -38,10 +38,13 @@ const SideBar = () => {
       }}
     >
       <div className="sidebar-header d-flex align-items-center">
-        <div className="d-flex align-items-center">
-          <div className="logo-q">Q</div>
-          <p className="logo-title"> Quinn_MQ</p>
-        </div>
+        <NavLink to="/" style={{ textDecoration: "none" }}>
+          <div className="d-flex align-items-center">
+            <div className="logo-q">Q</div>
+            <p className="logo-title"> Quinn_MQ</p>
+          </div>
+        </NavLink>
+
         <div onClick={() => setCollapsed(!collapsed)} className="btn-toggle">
           <FontAwesomeIcon icon={faBars} />
         </div>
