@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&family=Exile&family=Manrope:wght@200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Smooch+Sans:wght@100..900&display=swap");
+.login-container {
+  .header {
+    padding: 10px 50px;
+    & span {
+      font-family: "Edu QLD Hand";
+    }
+
+    .btn-signup {
+      padding: 5px 15px;
+      border: 1px solid;
+      border-radius: 8px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  .content {
+    &-title {
+      font-size: 30px;
+      margin: 0px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      font-family: "Smooch+Sans";
+
+      font-weight: 700;
+      color: #ff49c1;
+      text-align: center;
+    }
+
+    &-welcome {
+      font-family: "Edu QLD Hand";
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    &-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      .form-group {
+        & input {
+          margin-top: 5px;
+        }
+      }
+
+      .forgot-password {
+        text-decoration: underline;
+        cursor: pointer;
+        color: #afafaf;
+      }
+      .btn-login {
+        padding: 10px;
+        font-size: 20px;
+        font-weight: 500;
+        border: none;
+        background-color: #000;
+        color: #fff;
+        border-radius: 8px;
+        transition: all 0.25s linear;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
