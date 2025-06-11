@@ -28,7 +28,14 @@ const Login = (props) => {
     <div className="login-container">
       <div className="header col-12 d-flex justify-content-end align-items-center">
         <span>Don't have an account yet?</span>&nbsp;
-        <button className="btn-signup">Sign Up</button>
+        <button
+          className="btn-signup"
+          onClick={() => {
+            navigate("/sign_up");
+          }}
+        >
+          Sign Up
+        </button>
       </div>
       <div className="content col-4 mx-auto mt-5">
         <div className="content-title">Quinn_MQ</div>

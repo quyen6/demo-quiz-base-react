@@ -3,7 +3,7 @@
   .header {
     padding: 10px 50px;
     & span {
-      font-family: "Edu QLD Hand";
+      // font-family: "Edu QLD Hand";
     }
 
     .btn-signup {
@@ -24,7 +24,7 @@
       white-space: nowrap;
       text-overflow: ellipsis;
 
-      font-family: "Smooch+Sans";
+      // font-family: "Smooch+Sans";
 
       font-weight: 700;
       color: #ff49c1;
@@ -32,7 +32,7 @@
     }
 
     &-welcome {
-      font-family: "Edu QLD Hand";
+      // font-family: "Edu QLD Hand";
       text-align: center;
       margin: 20px 0;
     }
@@ -54,7 +54,7 @@
       }
       .btn-login {
         padding: 10px;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 500;
         border: none;
         background-color: #000;
@@ -62,7 +62,7 @@
         border-radius: 8px;
         transition: all 0.25s linear;
         &:hover {
-          opacity: 0.8;
+          transform: scale(1.05);
         }
       }
     }

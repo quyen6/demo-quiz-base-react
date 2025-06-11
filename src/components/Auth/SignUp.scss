@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&family=Exile&family=Manrope:wght@200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Smooch+Sans:wght@100..900&display=swap");
+.signup-container {
+  .header {
+    padding: 10px 50px;
+    & span {
+    }
+
+    .btn-signup {
+      padding: 5px 15px;
+      border: 1px solid;
+      border-radius: 8px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  .content {
+    // &-title {
+    //   font-size: 30px;
+    //   margin: 0px;
+    //   overflow: hidden;
+    //   white-space: nowrap;
+    //   text-overflow: ellipsis;
+
+    //   font-weight: 700;
+    //   color: #ff49c1;
+    //   text-align: center;
+    // }
+
+    &-welcome {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 30px;
+      font-weight: 700;
+      color: #12121e;
+    }
+
+    &-form {
+      & form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        & label {
+          margin-bottom: 5px;
+        }
+        & .password-input {
+          position: relative;
+
+          & i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+          }
+        }
+      }
+      .btn-signup {
+        padding: 10px;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        background-color: #12121e;
+        color: #fff;
+        border-radius: 8px;
+        margin: 15px 0;
+        transition: all 0.25s linear;
+        box-shadow: 0 5px #eee;
+        &:hover {
+          background-color: #1b1b2a;
+          // color: white;
+        }
+        &:active {
+          transform: translateY(2px);
+          box-shadow: 0 1px #eee;
+        }
+      }
+    }
+  }
+}
