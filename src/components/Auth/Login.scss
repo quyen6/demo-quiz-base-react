@@ -64,6 +64,16 @@
         &:hover {
           transform: scale(1.05);
         }
+
+        &:disabled {
+          background-color: #afafaf;
+          color: #fff;
+          cursor: no-drop;
+          // border: 1px solid #afafaf;
+          &:hover {
+            transform: scale(1);
+          }
+        }
       }
     }
   }
