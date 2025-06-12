@@ -38,19 +38,19 @@ const SideBar = () => {
       }}
     >
       <div className="sidebar-header d-flex align-items-center">
-        <NavLink to="/" style={{ textDecoration: "none" }}>
+        <NavLink to="/" style={{ textDecoration: "none", overflow: "hidden" }}>
           <div className="d-flex align-items-center">
             <div className="logo-q">Q</div>
             <p className="logo-title"> Quinn_MQ</p>
           </div>
         </NavLink>
 
-        <div onClick={() => setCollapsed(!collapsed)} className="btn-toggle">
+        {/* <div onClick={() => setCollapsed(!collapsed)} className="btn-toggle">
           <FontAwesomeIcon icon={faBars} />
-        </div>
+        </div> */}
       </div>
 
-      <div className="sidebar-content mt-5">
+      <div className="sidebar-content ">
         <Menu
           menuItemStyles={
             {
@@ -64,6 +64,15 @@ const SideBar = () => {
             }
           }
         >
+          <MenuItem
+            component={<Link to="/admin" />}
+            icon={
+              <FontAwesomeIcon icon={faBars} style={{ fontSize: "20px" }} />
+            }
+            onClick={() => setCollapsed(!collapsed)}
+          >
+            Collapse
+          </MenuItem>
           <MenuItem
             component={<Link to="/admin" />}
             icon={
