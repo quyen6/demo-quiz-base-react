@@ -1,8 +1,14 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { TypeAnimation } from "react-type-animation";
 import videohomepage from "../../assets/homepage.mp4";
+import { useSelector } from "react-redux";
 
 const HomePage = (props) => {
+  // const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  // console.log("🚀 ~ HomePage ~ isAuthenticated:", isAuthenticated);
+  // const account = useSelector((state) => state.user.account);
+  // console.log("🚀 ~ HomePage ~ account:", account);
+
   return (
     <Container className="homepage-container mt-3">
       <Row className="">
