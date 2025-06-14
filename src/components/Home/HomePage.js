@@ -2,12 +2,11 @@ import { Col, Container, Row } from "react-bootstrap";
 import { TypeAnimation } from "react-type-animation";
 import videohomepage from "../../assets/homepage.mp4";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = (props) => {
-  // const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  // console.log("🚀 ~ HomePage ~ isAuthenticated:", isAuthenticated);
-  // const account = useSelector((state) => state.user.account);
-  // console.log("🚀 ~ HomePage ~ account:", account);
+  const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   return (
     <Container className="homepage-container mt-3">
@@ -89,9 +88,21 @@ const HomePage = (props) => {
             </div>
             <div className="btn-homepage text-start ">
               <Col xs={12} sm={6} md={4} lg={6} xl={6}>
-                <button className="btn-get-started w-100 ">
-                  Get-started - It's free
-                </button>
+                {isAuthenticated ? (
+                  <button
+                    className="btn-get-started w-100 "
+                    onClick={() => navigate("/users")}
+                  >
+                    Doing Quiz Now
+                  </button>
+                ) : (
+                  <button
+                    className="btn-get-started w-100 "
+                    onClick={() => navigate("/login")}
+                  >
+                    Get-started - It's free
+                  </button>
+                )}
               </Col>
             </div>
           </div>
