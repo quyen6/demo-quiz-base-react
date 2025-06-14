@@ -12,6 +12,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 import SignUp from "./components/Auth/SignUp";
 import ListQuiz from "./components/User/ListQuiz";
+import DetailQuiz from "./components/User/DetailQuiz";
+
+const NotFound = () => {
+  return (
+    <div className="alert alert-danger container mt-3">404.NOT DOUND DATA</div>
+  );
+};
 const Layout = (props) => {
   return (
     <>
@@ -21,6 +28,8 @@ const Layout = (props) => {
 
           <Route path="/users" element={<ListQuiz />} />
         </Route>
+        <Route path="/quiz/:id" element={<DetailQuiz />} />
+
         <Route path="/admin" element={<Admin />}>
           <Route index element={<Dashboard />} />
           <Route path="manage-users" element={<ManageUsers />} />
@@ -28,6 +37,7 @@ const Layout = (props) => {
 
         <Route path="/login" element={<Login />} />
         <Route path="/sign_up" element={<SignUp />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <ToastContainer
