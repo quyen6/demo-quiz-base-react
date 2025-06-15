@@ -81,6 +81,31 @@ const DetailQuiz = (props) => {
     }
   };
 
+  const handleFinishQuiz = () => {
+    // console.log("🚀 ~ handleFinishQuiz ~ dataQuiz:", dataQuiz);
+    let payload = {
+      quizId: +quizId,
+      answers: [],
+    };
+    let answers = [];
+    if (dataQuiz && dataQuiz.length > 0) {
+      dataQuiz.forEach((item) => {
+        let questionid = item.questionId;
+        let userAnswerId = [];
+
+        item.answers.forEach((answer) => {
+          if (answer.selected) {
+            userAnswerId.push(+answer.id);
+          }
+        });
+        // todo
+        answers.push({ questionId: +questionid, userAnswerId: userAnswerId });
+      });
+    }
+
+    payload.answers = answers;
+    console.log("🚀 ~ handleFinishQuiz ~ payload:", payload);
+  };
   return (
     <div className="detail-quiz-container container mt-3">
       <div className="left-content">
@@ -105,7 +130,7 @@ const DetailQuiz = (props) => {
           <button onClick={() => handleNext()}>Next</button>
           <button
             className="finish btn btn-success"
-            onClick={() => handleNext()}
+            onClick={() => handleFinishQuiz()}
           >
             Finish
           </button>
