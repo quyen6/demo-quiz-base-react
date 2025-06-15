@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { getDataQuiz } from "../../services/apiServices";
+import { getDataQuiz, postSubmitQuiz } from "../../services/apiServices";
 import _ from "lodash";
 import "./DetailQuiz.scss";
 import Question from "./Question";
 import { useState } from "react";
+import ModalResult from "./ModalResult";
 
 const DetailQuiz = (props) => {
   const params = useParams();
@@ -15,6 +16,9 @@ const DetailQuiz = (props) => {
 
   const [dataQuiz, setDataQuiz] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  const [showModalResult, setShowModalResult] = useState(false);
+  const [dataModalResult, setDataModalResult] = useState({});
 
   useEffect(() => {
     fetchQuestion();
@@ -81,7 +85,7 @@ const DetailQuiz = (props) => {
     }
   };
 
-  const handleFinishQuiz = () => {
+  const handleFinishQuiz = async () => {
     // console.log("🚀 ~ handleFinishQuiz ~ dataQuiz:", dataQuiz);
     let payload = {
       quizId: +quizId,
@@ -104,7 +108,23 @@ const DetailQuiz = (props) => {
     }
 
     payload.answers = answers;
-    console.log("🚀 ~ handleFinishQuiz ~ payload:", payload);
+
+    // submit api
+
+    let res = await postSubmitQuiz(payload);
+
+    if (res && res.EC === 0) {
+      setDataModalResult({
+        countCorrect: res.DT.countCorrect,
+        countTotal: res.DT.countTotal,
+        quizData: res.DT.quizData,
+      });
+      setShowModalResult(true);
+      // alert(res.EM);
+      // console.log("🚀 ~ handleFinishQuiz ~ res:", res);
+    } else {
+      alert("Something wrongs with server, please try again later!");
+    }
   };
   return (
     <div className="detail-quiz-container container mt-3">
@@ -138,6 +158,12 @@ const DetailQuiz = (props) => {
       </div>
 
       <div className="right-content">count down</div>
+
+      <ModalResult
+        show={showModalResult}
+        setShow={setShowModalResult}
+        dataModalResult={dataModalResult}
+      />
     </div>
   );
 };
