@@ -13,13 +13,13 @@ const ListQuiz = (props) => {
 
   const getQuizData = async () => {
     let res = await getQuizByUser();
-    console.log("🚀 ~ getQuizData ~ res:", res);
+
     if (res && res.EC === 0) {
       setArrQuiz(res.DT);
     }
   };
   return (
-    <div className="list-quiz-container container  mt-3">
+    <div className="list-quiz-container container  mt-5">
       {arrQuiz &&
         arrQuiz.length > 0 &&
         arrQuiz.map((item, index) => {
@@ -39,7 +39,11 @@ const ListQuiz = (props) => {
                 <p className="card-text">{item.description}</p>
                 <button
                   className="btn btn-primary"
-                  onClick={() => navigate(`/quiz/${item.id}`)}
+                  onClick={() =>
+                    navigate(`/quiz/${item.id}`, {
+                      state: { quizTitle: item.description },
+                    })
+                  }
                 >
                   Start now
                 </button>
