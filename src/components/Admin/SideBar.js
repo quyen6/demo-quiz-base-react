@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Sidebar,
   Menu,
@@ -8,17 +7,16 @@ import {
 } from "react-pro-sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBars,
   faClipboardQuestion,
   faGears,
   faNoteSticky,
   faTableColumns,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const SideBar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const SideBar = (props) => {
+  const { collapsed } = props;
   return (
     <Sidebar
       collapsed={collapsed}
@@ -27,7 +25,7 @@ const SideBar = () => {
           backgroundColor: "#fff",
           height: "100vh",
           position: "fixed",
-          top: 0,
+          top: 68,
           bottom: 0,
           left: 0,
           width: collapsed ? "80px" : "250px",
@@ -37,20 +35,7 @@ const SideBar = () => {
         },
       }}
     >
-      <div className="sidebar-header d-flex align-items-center">
-        <NavLink to="/" style={{ textDecoration: "none", overflow: "hidden" }}>
-          <div className="d-flex align-items-center">
-            <div className="logo-q">Q</div>
-            <p className="logo-title"> Quinn_MQ</p>
-          </div>
-        </NavLink>
-
-        {/* <div onClick={() => setCollapsed(!collapsed)} className="btn-toggle">
-          <FontAwesomeIcon icon={faBars} />
-        </div> */}
-      </div>
-
-      <div className="sidebar-content ">
+      <div className="sidebar-content mt-3">
         <Menu
           menuItemStyles={
             {
@@ -64,15 +49,15 @@ const SideBar = () => {
             }
           }
         >
-          <MenuItem
-            component={<Link to="/admin" />}
+          {/* <MenuItem
+            // component={<Link to="/admin" />}
             icon={
-              <FontAwesomeIcon icon={faBars} style={{ fontSize: "20px" }} />
+             
             }
-            onClick={() => setCollapsed(!collapsed)}
+            
           >
             Collapse
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem
             component={<Link to="/admin" />}
             icon={

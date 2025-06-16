@@ -2,7 +2,6 @@
   .title {
     font-size: 30px;
     font-weight: 600;
-    margin-bottom: 20px;
   }
   .add-new {
     legend {
@@ -13,24 +12,21 @@
     .more-actions {
       gap: 30px;
       .quiz-type {
-        flex: 4;
       }
       .quiz-image {
-        flex: 3;
         & label {
           padding: 7px 20px;
           border: 1px solid #ccc;
           background-color: #eee;
           border-radius: 4px;
           cursor: pointer;
-          // width: 100%;
+          width: 100%;
+          text-align: center;
         }
         & input {
         }
       }
       .selected-file {
-        flex: 5;
-
         background-color: #f3ecff;
         border: 1px solid #e8d9fe;
         border-radius: 8px;
@@ -41,6 +37,7 @@
           font-size: 13px;
           font-weight: 500;
           margin-left: 15px;
+          padding-right: 30px;
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
