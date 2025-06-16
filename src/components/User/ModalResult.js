@@ -1,5 +1,5 @@
 import Modal from "react-bootstrap/Modal";
-import "./ModalResult.scss";
+
 const ModalResult = (props) => {
   const { show, setShow, dataModalResult } = props;
 

@@ -96,8 +96,11 @@ const SideBar = () => {
             >
               &nbsp; Manage Users
             </MenuItem>
-            <MenuItem icon={<FontAwesomeIcon icon={faNoteSticky} />}>
-              &nbsp; Manage Quizs
+            <MenuItem
+              icon={<FontAwesomeIcon icon={faNoteSticky} />}
+              component={<Link to="manage-quiz" />}
+            >
+              &nbsp; Manage Quiz
             </MenuItem>
             <MenuItem icon={<FontAwesomeIcon icon={faClipboardQuestion} />}>
               &nbsp; Manage Questions
