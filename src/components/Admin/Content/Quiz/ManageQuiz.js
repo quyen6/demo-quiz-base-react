@@ -238,6 +238,21 @@ const ManageQuiz = (props) => {
                     >
                       {isEditing ? "Update Quiz" : "Add Quiz"}
                     </button>
+
+                    <button
+                      className="btn btn-secondary float-end me-2"
+                      onClick={() => {
+                        setActiveKey(null);
+                        setIsEditing(false);
+                        setName("");
+                        setDescription("");
+                        setType("");
+                        setSelectImage(null);
+                        setPreviewImage(null);
+                      }}
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </fieldset>
               </div>

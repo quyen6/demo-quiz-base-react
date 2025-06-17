@@ -19,9 +19,20 @@ const Header = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary pt-3">
       <Container>
-        <NavLink to="/" className="navbar-brand">
-          Quinn_MQ{" "}
+        <NavLink
+          to="/"
+          className="navbar-brand"
+          style={{ textDecoration: "none", overflow: "hidden" }}
+        >
+          <div
+            className="d-flex align-items-center"
+            onClick={() => navigate("/")}
+          >
+            <div className="logo-q">Q</div>
+            <p className="logo-title"> Quinn_MQ</p>
+          </div>
         </NavLink>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

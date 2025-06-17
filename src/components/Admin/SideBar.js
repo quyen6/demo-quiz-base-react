@@ -87,7 +87,10 @@ const SideBar = (props) => {
             >
               &nbsp; Manage Quiz
             </MenuItem>
-            <MenuItem icon={<FontAwesomeIcon icon={faClipboardQuestion} />}>
+            <MenuItem
+              icon={<FontAwesomeIcon icon={faClipboardQuestion} />}
+              component={<Link to="manage-questions" />}
+            >
               &nbsp; Manage Questions
             </MenuItem>
           </SubMenu>
