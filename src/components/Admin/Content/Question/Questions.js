@@ -11,6 +11,7 @@ import {
   faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
+import Lightbox from "react-awesome-lightbox";
 
 const Questions = (props) => {
   const options = [
@@ -29,6 +30,12 @@ const Questions = (props) => {
       answers: [{ id: uuidv4(), description: "", isCorrect: false }],
     },
   ]);
+
+  const [isPreviewImage, setIsPreviewImage] = useState(false);
+  const [dataImagePreview, setDataImagePreview] = useState({
+    title: "",
+    url: "",
+  });
 
   const handleAddRemoveQuestion = (type, id) => {
     if (type === "ADD") {
@@ -121,9 +128,21 @@ const Questions = (props) => {
     }
   };
 
+  const handlePreviewImage = (questionId) => {
+    let questionsClone = _.cloneDeep(questions);
+    let index = questionsClone.findIndex((item) => item.id === questionId);
+    if (index > -1) {
+      setDataImagePreview({
+        url: URL.createObjectURL(questionsClone[index].imageFile),
+        title: questionsClone[index].imageName,
+      });
+      setIsPreviewImage(true);
+    }
+  };
   const handleSubmitQuestionForQuiz = () => {
     console.log(questions);
   };
+
   return (
     <div className="questions-container">
       <div className="title">Manage Questions</div>
@@ -174,6 +193,7 @@ const Questions = (props) => {
                           >
                             <FontAwesomeIcon icon={faFileCirclePlus} />
                           </label>
+
                           <input
                             type="file"
                             id={`${question.id}`}
@@ -182,17 +202,18 @@ const Questions = (props) => {
                               handleOnChangeFileQuestion(question.id, e)
                             }
                           />
-                          {/* <span>
-                            {question?.imageName
-                              ? question?.imageName
-                              : "0 image is uploaded"}
-                          </span> */}
+
                           {question?.imageName ? (
-                            <div class="test1">
-                              <span class="ellipsis">
+                            <div
+                              className="test1"
+                              onClick={() => handlePreviewImage(question.id)}
+                            >
+                              <span className="ellipsis">
                                 {question?.imageName}
                               </span>
-                              <span class="indent">{question?.imageName}</span>
+                              <span className="indent">
+                                {question?.imageName}
+                              </span>
                             </div>
                           ) : (
                             <span>0 image is uploaded</span>
@@ -295,6 +316,13 @@ const Questions = (props) => {
                 Save Questions
               </button>
             </div>
+          )}
+          {isPreviewImage && (
+            <Lightbox
+              image={dataImagePreview.url}
+              title={dataImagePreview.title}
+              onClose={() => setIsPreviewImage(false)}
+            ></Lightbox>
           )}
         </div>
       </div>
