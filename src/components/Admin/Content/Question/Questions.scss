@@ -5,53 +5,111 @@
   }
 
   .body-wrapper {
-    .questions-content {
+    .main-content {
       margin-top: 15px;
       .add-new-question {
-        padding-top: 5px;
-        .group-upload {
-          padding: 10px 20px;
-          .upload-image {
-            .label-upload {
+      }
+      .questions-answers {
+        .group-questions-answers {
+          .questions-content {
+            .group-upload {
+              padding: 0 20px;
+              .upload-image {
+                display: flex;
+
+                align-items: baseline;
+                max-width: 70%;
+                .label-upload {
+                  padding: 5px 10px;
+                  font-size: 30px;
+                  cursor: pointer;
+                  color: #418fde;
+                  transition: all 0.25s linear;
+                  &:hover {
+                    opacity: 0.8;
+                  }
+                }
+                & span {
+                  // display: -webkit-box;
+                  // -webkit-line-clamp: 1;
+                  // overflow: hidden;
+                  // text-overflow: ellipsis;
+                  // -webkit-box-orient: vertical;
+                  width: 150px;
+                  white-space: nowrap;
+                }
+                .test1 {
+                  max-width: 100%;
+                  white-space: nowrap;
+                  & span {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    vertical-align: middle;
+                  }
+
+                  .ellipsis {
+                    display: inline-block;
+                    width: calc(40% + 1.2em);
+                    text-overflow: ellipsis;
+                  }
+
+                  .indent {
+                    display: inline-flex;
+                    width: calc(40% - 1.2em);
+                    justify-content: flex-end;
+                  }
+                }
+              }
+              .btn-group {
+                & button {
+                  border: none;
+                  background: transparent;
+                  font-size: 26px;
+                  transition: all 0.25s linear;
+                  &:hover {
+                    opacity: 0.8;
+                  }
+                }
+                .add-icon {
+                  color: rgba(0, 128, 0, 0.781);
+                }
+                .delete-icon {
+                  color: rgba(255, 0, 0, 0.766);
+                }
+              }
+            }
+          }
+          .answers-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-left: 20px;
+
+            .iscorrect {
+              font-size: 20px;
+            }
+            .answer {
+              width: calc(50% - 40px);
               margin-right: 10px;
-              padding: 5px 10px;
-              border: 1px solid red;
-              border-radius: 4px;
-              background-color: #eee;
-              cursor: pointer;
+            }
+            .btn-group {
+              & button {
+                border: none;
+                background: transparent;
+                font-size: 26px;
+                transition: all 0.25s linear;
+                &:hover {
+                  opacity: 0.8;
+                }
+              }
+              .add-icon {
+                color: rgba(0, 128, 0, 0.781);
+              }
+              .delete-icon {
+                color: rgba(255, 0, 0, 0.766);
+              }
             }
           }
-          .btn-group {
-            & button {
-              border: none;
-              background: transparent;
-              color: green;
-              font-size: 30px;
-            }
-          }
-        }
-      }
-    }
-
-    .answers-content {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding-left: 20px;
-
-      .iscorrect {
-        font-size: 20px;
-      }
-      .answer {
-        width: calc(50% - 40px);
-        margin-right: 10px;
-      }
-      .btn-group {
-        & button {
-          border: none;
-          background: transparent;
-          color: green;
-          font-size: 30px;
         }
       }
     }

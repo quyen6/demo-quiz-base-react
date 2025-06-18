@@ -23,7 +23,7 @@ const SideBar = (props) => {
       rootStyles={{
         [`.${sidebarClasses.container}`]: {
           backgroundColor: "#fff",
-          height: "100vh",
+
           position: "fixed",
           top: 68,
           bottom: 0,
