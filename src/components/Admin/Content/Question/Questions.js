@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 import { v4 as uuidv4 } from "uuid";
 import "./Questions.scss";
@@ -10,17 +10,15 @@ import {
   faSquareMinus,
   faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
+import {
+  getAllQuizForAdmin,
+  postCreateNewQuestionForQuiz,
+  postCreateNewAnswerForQuestion,
+} from "../../../../services/apiServices";
 import _ from "lodash";
 import Lightbox from "react-awesome-lightbox";
 
 const Questions = (props) => {
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
-  const [selectedQuestion, setSelectedQuestion] = useState({});
-
   const [questions, setQuestions] = useState([
     {
       id: uuidv4(),
@@ -36,6 +34,26 @@ const Questions = (props) => {
     title: "",
     url: "",
   });
+
+  const [listQuiz, setListQuiz] = useState([]);
+  const [selectedQuestion, setSelectedQuestion] = useState({});
+
+  useEffect(() => {
+    fetchQuiz();
+  }, []);
+
+  const fetchQuiz = async () => {
+    let res = await getAllQuizForAdmin();
+    if (res && res.EC === 0) {
+      let newQuiz = res.DT.map((item) => {
+        return {
+          value: item.id,
+          label: `${item.id} - ${item.name}`,
+        };
+      });
+      setListQuiz(newQuiz);
+    }
+  };
 
   const handleAddRemoveQuestion = (type, id) => {
     if (type === "ADD") {
@@ -139,8 +157,35 @@ const Questions = (props) => {
       setIsPreviewImage(true);
     }
   };
-  const handleSubmitQuestionForQuiz = () => {
-    console.log(questions);
+  const handleSubmitQuestionForQuiz = async () => {
+    //todo
+    // validate
+    console.log("question ", questions);
+    console.log("selectedQuestion ", selectedQuestion);
+
+    //submit questions
+
+    await Promise.all(
+      questions.map(async (question) => {
+        const q = await postCreateNewQuestionForQuiz(
+          +selectedQuestion.value,
+          question.description,
+          question.image
+        );
+        //  //submit answer
+        await Promise.all(
+          question.answers.map(async (answer) => {
+            const a = await postCreateNewAnswerForQuestion(
+              answer.description,
+              answer.isCorrect,
+              q.DT.id
+            );
+            console.log("🚀 ~ awaitPromise.all ~ a:", a);
+          })
+        );
+        console.log("🚀 ~ awaitPromise.all ~ q:", q);
+      })
+    );
   };
 
   return (
@@ -152,7 +197,7 @@ const Questions = (props) => {
             <label className="mb-1">Select Quiz: </label>
             <div className="add-new-question">
               <Select
-                options={options}
+                options={listQuiz}
                 value={selectedQuestion}
                 onChange={setSelectedQuestion}
               />
