@@ -10,6 +10,7 @@ import {
   faSquareMinus,
   faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 import {
   getAllQuizForAdmin,
   postCreateNewQuestionForQuiz,
@@ -19,7 +20,7 @@ import _ from "lodash";
 import Lightbox from "react-awesome-lightbox";
 
 const Questions = (props) => {
-  const [questions, setQuestions] = useState([
+  const initQuestion = [
     {
       id: uuidv4(),
       description: "",
@@ -27,7 +28,8 @@ const Questions = (props) => {
       imageName: "",
       answers: [{ id: uuidv4(), description: "", isCorrect: false }],
     },
-  ]);
+  ];
+  const [questions, setQuestions] = useState(initQuestion);
 
   const [isPreviewImage, setIsPreviewImage] = useState(false);
   const [dataImagePreview, setDataImagePreview] = useState({
@@ -36,7 +38,7 @@ const Questions = (props) => {
   });
 
   const [listQuiz, setListQuiz] = useState([]);
-  const [selectedQuestion, setSelectedQuestion] = useState({});
+  const [selectedQuiz, setSelectedQuiz] = useState({});
 
   useEffect(() => {
     fetchQuiz();
@@ -159,33 +161,79 @@ const Questions = (props) => {
   };
   const handleSubmitQuestionForQuiz = async () => {
     //todo
-    // validate
-    console.log("question ", questions);
-    console.log("selectedQuestion ", selectedQuestion);
+    if (_.isEmpty(selectedQuiz)) {
+      toast.error("Please choose a Quiz!");
+
+      return;
+    }
+
+    // validate answer
+    let isValidAnswer = true;
+    let indexQuestion = 0;
+    let indexAnswer = 0;
+    for (let i = 0; i < questions.length; i++) {
+      for (let j = 0; j < questions[i].answers.length; j++) {
+        if (!questions[i].answers[j].description) {
+          isValidAnswer = false;
+          indexAnswer = j;
+          break;
+        }
+      }
+      indexQuestion = i;
+      if (isValidAnswer === false) {
+        break;
+      }
+    }
+    if (isValidAnswer === false) {
+      toast.error(
+        `Not empty Answer ${indexAnswer + 1} at Question ${indexQuestion + 1}`
+      );
+      return;
+    }
+
+    // validate question
+    let isValiQuestion = true;
+    let indexQ = 0;
+
+    for (let i = 0; i < questions.length; i++) {
+      if (!questions[i].description) {
+        isValiQuestion = false;
+        indexQ = i;
+
+        break;
+      }
+    }
+    if (isValiQuestion === false) {
+      toast.error(`Not empty description for Question ${indexQ + 1}`);
+      return;
+    }
+
+    // validate answer isCorrect
 
     //submit questions
+    for (const question of questions) {
+      // console.log("🚀 ~ handleSubmitQuestionForQuiz ~ question:", question);
+      const q = await postCreateNewQuestionForQuiz(
+        +selectedQuiz.value,
+        question.description,
+        question.image
+      );
 
-    await Promise.all(
-      questions.map(async (question) => {
-        const q = await postCreateNewQuestionForQuiz(
-          +selectedQuestion.value,
-          question.description,
-          question.image
+      // submit answer
+      for (const answer of question.answers) {
+        // console.log("🚀 ~ handleSubmitQuestionForQuiz ~ answer:", answer);
+        await postCreateNewAnswerForQuestion(
+          answer.description,
+          answer.isCorrect,
+          q.DT.id
         );
-        //  //submit answer
-        await Promise.all(
-          question.answers.map(async (answer) => {
-            const a = await postCreateNewAnswerForQuestion(
-              answer.description,
-              answer.isCorrect,
-              q.DT.id
-            );
-            console.log("🚀 ~ awaitPromise.all ~ a:", a);
-          })
-        );
-        console.log("🚀 ~ awaitPromise.all ~ q:", q);
-      })
-    );
+      }
+    }
+
+    toast.success("Create questions ans answers success");
+    setQuestions(initQuestion);
+    // console.log("question ", questions);
+    // console.log("selectedQuestion ", selectedQuiz);
   };
 
   return (
@@ -198,8 +246,8 @@ const Questions = (props) => {
             <div className="add-new-question">
               <Select
                 options={listQuiz}
-                value={selectedQuestion}
-                onChange={setSelectedQuestion}
+                value={selectedQuiz}
+                onChange={setSelectedQuiz}
               />
             </div>
           </div>
