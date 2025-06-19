@@ -7,7 +7,7 @@ const TableQuiz = (props) => {
 
   return (
     <>
-      <Table striped bordered hover className="mt-4">
+      <Table striped bordered hover className="mt-4 ">
         <thead>
           <tr>
             <th>ID</th>

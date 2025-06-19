@@ -12,6 +12,8 @@ import {
 import { toast } from "react-toastify";
 import TableQuiz from "./TableQuiz";
 import { Accordion, Modal } from "react-bootstrap";
+import QuizQA from "./QuizQA";
+import AssignQuiz from "./AssignQuiz";
 
 const options = [
   { value: "EASY", label: "EASY" },
@@ -29,7 +31,6 @@ const ManageQuiz = (props) => {
 
   const [listQuiz, setListQuiz] = useState([]);
 
-  const [activeKey, setActiveKey] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [id, setId] = useState("");
 
@@ -85,7 +86,7 @@ const ManageQuiz = (props) => {
 
   const handleClickBtnEditQuiz = (quiz) => {
     console.log("🚀 ~ handleClickBtnEditQuiz ~ quiz:", quiz);
-    setActiveKey("0"); // mở Accordion
+
     setIsEditing(true);
     setName(quiz.name);
     setDescription(quiz.description);
@@ -97,7 +98,7 @@ const ManageQuiz = (props) => {
     setPreviewImage(quiz.image ? `data:image/jpeg;base64,${quiz.image}` : null);
     setId(quiz.id);
   };
-  const handleEditQuiz = async () => {
+  const handleSubmitEditQuiz = async () => {
     //validate
     if (!name || !description || !selectImage) {
       toast.error("Name, Description and Image are required!");
@@ -113,7 +114,6 @@ const ManageQuiz = (props) => {
     );
     if (res && res.EC === 0) {
       toast.success(res.EM);
-      setActiveKey(null);
       setName("");
       setDescription("");
       setType("");
@@ -147,127 +147,147 @@ const ManageQuiz = (props) => {
   };
   return (
     <div className="manage-quiz-container">
-      <Accordion activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
-        <Accordion.Item eventKey="0">
+      <Accordion alwaysOpen>
+        <Accordion.Item eventKey={"0"}>
           <Accordion.Header>
             <div className="title"> Manage Quiz</div>
           </Accordion.Header>
-          {
-            <Accordion.Body className="p-0 pt-4">
-              <div className="add-new">
-                <fieldset className="border-top  p-3">
-                  <legend className="float-none w-auto px-3">
-                    {isEditing ? "Edit Quiz" : "Add new Quiz"}
-                  </legend>
-                  <div className="form-floating mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+
+          <Accordion.Body className="p-0 pt-4">
+            <div className="add-new">
+              <fieldset className="border-top  p-3">
+                <legend className="float-none w-auto px-3">
+                  {isEditing ? "Edit Quiz" : "Add new Quiz"}
+                </legend>
+                <div className="form-floating mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <label>Name</label>
+                </div>
+                <div className="form-floating">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                  <label>Description</label>
+                </div>
+                <div className="more-actions d-flex justify-content-between align-items-center mt-3">
+                  <div className="quiz-type col-4">
+                    <Select
+                      value={type}
+                      onChange={setType}
+                      options={options}
+                      placeholder="Quiz Type"
                     />
-                    <label>Name</label>
                   </div>
-                  <div className="form-floating">
+                  <div className="quiz-image col-3">
+                    <label htmlFor="addImage">
+                      {" "}
+                      <FontAwesomeIcon icon={faPlusCircle} />
+                      &nbsp; Upload Image
+                    </label>
                     <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Description"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
+                      type="file"
+                      ref={inputRef}
+                      id="addImage"
+                      hidden
+                      onChange={(event) => handleSelectImage(event)}
                     />
-                    <label>Description</label>
                   </div>
-                  <div className="more-actions d-flex justify-content-between align-items-center mt-3">
-                    <div className="quiz-type col-4">
-                      <Select
-                        value={type}
-                        onChange={setType}
-                        options={options}
-                        placeholder="Quiz Type"
-                      />
-                    </div>
-                    <div className="quiz-image col-3">
-                      <label htmlFor="addImage">
-                        {" "}
-                        <FontAwesomeIcon icon={faPlusCircle} />
-                        &nbsp; Upload Image
-                      </label>
-                      <input
-                        type="file"
-                        ref={inputRef}
-                        id="addImage"
-                        hidden
-                        onChange={(event) => handleSelectImage(event)}
-                      />
-                    </div>
 
-                    <div
-                      className="selected-file col-4"
-                      style={selectImage ? { opacity: 1 } : { opacity: 0 }}
-                    >
-                      <p>
-                        {selectImage?.name
-                          ? selectImage?.name
-                          : "Delete Or Upload Image"}
-                      </p>
+                  <div
+                    className="selected-file col-4"
+                    style={selectImage ? { opacity: 1 } : { opacity: 0 }}
+                  >
+                    <p>
+                      {selectImage?.name
+                        ? selectImage?.name
+                        : "Delete Or Upload Image"}
+                    </p>
 
-                      <button onClick={() => removeFile()}>
-                        <FontAwesomeIcon icon={faTrash} />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="preview-image mt-3 ">
-                    {selectImage ? (
-                      <img
-                        src={previewImage}
-                        alt="Preview"
-                        className="img-thumbnail"
-                      />
-                    ) : (
-                      <span>Preview Image</span>
-                    )}
-                  </div>
-                  <div>
-                    <button
-                      className="btn btn-success float-end"
-                      onClick={() => {
-                        isEditing ? handleEditQuiz() : handleSubmitQuiz();
-                      }}
-                    >
-                      {isEditing ? "Update Quiz" : "Add Quiz"}
-                    </button>
-
-                    <button
-                      className="btn btn-secondary float-end me-2"
-                      onClick={() => {
-                        setActiveKey(null);
-                        setIsEditing(false);
-                        setName("");
-                        setDescription("");
-                        setType("");
-                        setSelectImage(null);
-                        setPreviewImage(null);
-                      }}
-                    >
-                      Cancel
+                    <button onClick={() => removeFile()}>
+                      <FontAwesomeIcon icon={faTrash} />
                     </button>
                   </div>
-                </fieldset>
-              </div>
-            </Accordion.Body>
-          }
+                </div>
+                <div className="preview-image mt-3 ">
+                  {selectImage ? (
+                    <img
+                      src={previewImage}
+                      alt="Preview"
+                      className="img-thumbnail"
+                    />
+                  ) : (
+                    <span>Preview Image</span>
+                  )}
+                </div>
+                <div>
+                  <button
+                    className="btn btn-success float-end"
+                    onClick={() => {
+                      isEditing ? handleSubmitEditQuiz() : handleSubmitQuiz();
+                    }}
+                  >
+                    {isEditing ? "Update Quiz" : "Add Quiz"}
+                  </button>
+
+                  <button
+                    className="btn btn-secondary float-end me-2"
+                    onClick={() => {
+                      setIsEditing(false);
+                      setName("");
+                      setDescription("");
+                      setType("");
+                      setSelectImage(null);
+                      setPreviewImage(null);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </fieldset>
+            </div>
+
+            <div className="list-detail px-3">
+              <TableQuiz
+                handleClickBtnEditQuiz={handleClickBtnEditQuiz}
+                handleClickBtnDeleteQuiz={handleClickBtnDeleteQuiz}
+                listQuiz={listQuiz}
+                handleSubmitDeleteQuiz={handleSubmitDeleteQuiz}
+              />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>
+            <div className="title"> Update Q/A Quiz</div>
+          </Accordion.Header>
+
+          <Accordion.Body className="p-0 pt-4">
+            {" "}
+            <QuizQA />
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="2">
+          <Accordion.Header>
+            <div className="title"> Assign to Users</div>
+          </Accordion.Header>
+
+          <Accordion.Body className="p-0 pt-4">
+            <AssignQuiz />
+          </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      <div className="list-detail">
-        <TableQuiz
-          handleClickBtnEditQuiz={handleClickBtnEditQuiz}
-          handleClickBtnDeleteQuiz={handleClickBtnDeleteQuiz}
-          listQuiz={listQuiz}
-          handleSubmitDeleteQuiz={handleSubmitDeleteQuiz}
-        />
-      </div>
+
       <Modal
         show={showModalDeleteQuiz}
         onHide={handleClose}
