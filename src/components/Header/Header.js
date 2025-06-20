@@ -17,7 +17,7 @@ const Header = () => {
     navigate("/login");
   };
   return (
-    <Navbar expand="lg" className="bg-body-tertiary pt-3">
+    <Navbar expand="lg" className="bg-body-tertiary pt-3 ">
       <Container>
         <NavLink
           to="/"

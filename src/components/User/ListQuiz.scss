@@ -1,4 +1,33 @@
 .list-quiz-container {
-  display: flex;
-  gap: 50px;
+  // display: flex;
+  // gap: 50px;
+
+  .card {
+    &.col-2 {
+      padding: 0;
+    }
+    &-img {
+      display: flex;
+      justify-content: center;
+      padding: 5px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      .card-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
 }

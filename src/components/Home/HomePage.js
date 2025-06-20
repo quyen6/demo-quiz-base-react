@@ -9,7 +9,7 @@ const HomePage = (props) => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   return (
-    <Container className="homepage-container mt-3">
+    <Container className="homepage-container ">
       <Container>
         <Row className="">
           <Col
@@ -26,10 +26,11 @@ const HomePage = (props) => {
                 loop
                 playsInline
                 style={{
-                  width: "100%",
-                  height: "auto",
+                  width: "95%",
+                  height: "95%",
                   borderRadius: "12px",
                   boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+                  objectFit: "cover",
                 }}
               >
                 <source src={videohomepage} type="video/mp4" />

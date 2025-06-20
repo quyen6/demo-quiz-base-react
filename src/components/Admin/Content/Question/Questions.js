@@ -209,6 +209,20 @@ const Questions = (props) => {
     }
 
     // validate answer isCorrect
+    // let count = 0;
+    for (let i = 0; i < questions.length; i++) {
+      const answers = questions[i].answers;
+      const hasCorrectAnswer = answers.some(
+        (answer) => answer.isCorrect === true
+      );
+
+      if (!hasCorrectAnswer) {
+        toast.error(
+          `Please choose at least one correct answer in question ${i + 1}`
+        );
+        return; // dừng lại nếu có lỗi
+      }
+    }
 
     //submit questions
     for (const question of questions) {
