@@ -21,13 +21,13 @@ const ListQuiz = (props) => {
   };
   return (
     <Container>
-      <div className="list-quiz-container mt-3 gap-4  row justify-content-start px-5 pb-5">
+      <div className="list-quiz-container  mt-3  row justify-content-start pb-5">
         {arrQuiz &&
           arrQuiz.length > 0 &&
           arrQuiz.map((item, index) => {
             return (
               <div
-                className="card col-2"
+                className="card "
                 // style={{ width: "18rem" }}
                 key={`list-quiz-${index}`}
               >
@@ -38,7 +38,7 @@ const ListQuiz = (props) => {
                     alt="..."
                   />
                 </div>
-                <div className="card-body">
+                <div className="card-body ">
                   <h5 className="card-title">Quiz {index + 1}</h5>
                   <p className="card-text">{item.description}</p>
                   <button

@@ -1,32 +1,48 @@
 .list-quiz-container {
-  // display: flex;
-  // gap: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 20px;
 
   .card {
-    &.col-2 {
-      padding: 0;
-    }
+    flex: 0 0 calc((100% - 40px) / 5); /* 4 khoảng cách * 10px = 40px */
+    box-sizing: border-box;
+    background: #f2f2f2;
+
+    // &.col-2 {
+    //   padding: 0;
+    // }
     &-img {
       display: flex;
       justify-content: center;
       padding: 5px;
 
       img {
-        width: 100%;
-        height: 100%;
+        width: calc(100% - 30px);
+        height: 150px;
         object-fit: contain;
       }
     }
     &-body {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      position: relative;
+      justify-content: end;
+
+      .card-title {
+        position: absolute;
+        top: 0;
+      }
       .card-text {
+        margin: 10px 0;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         overflow: hidden;
         text-overflow: ellipsis;
         -webkit-box-orient: vertical;
+        float: inline-start;
+      }
+      & > button {
       }
     }
   }

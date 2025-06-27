@@ -286,9 +286,9 @@ const QuizQA = (props) => {
     });
     console.log("🚀 ~ handleSubmitQuestionForQuiz ~ res:", res);
     if (res && res.EC === 0) {
+      toast.success(res.EM);
+      fetchQuizWithQA();
     }
-    // toast.success("Create questions ans answers success");
-    // setQuestions(initQuestion);
     // console.log("question ", questions);
     // console.log("selectedQuestion ", selectedQuiz);
   };

@@ -5,6 +5,7 @@
   .left-content {
     border: 1px solid red;
     flex: 2;
+    width: 70%;
     .title {
     }
     .quiz-body {
@@ -19,6 +20,7 @@
         & img {
           width: 80%;
           object-fit: cover;
+          cursor: pointer;
         }
       }
       .question {
@@ -59,8 +61,36 @@
       }
     }
   }
-  .right-content {
+  .right-content-container {
     border: 1px solid green;
     flex: 1;
+    width: 30%;
+    .main-timer {
+      border: 1px solid red;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 26px;
+    }
+    .main-questions {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+      gap: 15px;
+
+      .question {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 999px;
+        border: 1px solid rebeccapurple;
+        cursor: pointer;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
   }
 }
