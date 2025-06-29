@@ -159,7 +159,11 @@ const DetailQuiz = (props) => {
       </div>
 
       <div className="right-content-container">
-        <RightContent dataQuiz={dataQuiz} handleFinishQuiz={handleFinishQuiz} />
+        <RightContent
+          dataQuiz={dataQuiz}
+          handleFinishQuiz={handleFinishQuiz}
+          setCurrentQuestion={setCurrentQuestion}
+        />
       </div>
 
       <ModalResult

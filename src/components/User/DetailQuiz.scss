@@ -88,6 +88,12 @@
         cursor: pointer;
 
         &:hover {
+          color: green;
+        }
+        &.selected {
+          background-color: #eee;
+        }
+        &.clicked {
           color: red;
         }
       }
