@@ -15,6 +15,8 @@ import ListQuiz from "./components/User/ListQuiz";
 import DetailQuiz from "./components/User/DetailQuiz";
 import ManageQuiz from "./components/Admin/Content/Quiz/ManageQuiz";
 import Questions from "./components/Admin/Content/Question/Questions";
+import Test1 from "./routes/Test1";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const NotFound = () => {
   return (
@@ -28,11 +30,25 @@ const Layout = (props) => {
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
 
-          <Route path="/users" element={<ListQuiz />} />
+          <Route
+            path="/users"
+            element={
+              <PrivateRoute>
+                <ListQuiz />
+              </PrivateRoute>
+            }
+          />
         </Route>
         <Route path="/quiz/:id" element={<DetailQuiz />} />
 
-        <Route path="/admin" element={<Admin />}>
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <Admin />
+            </PrivateRoute>
+          }
+        >
           <Route index element={<Dashboard />} />
           <Route path="manage-users" element={<ManageUsers />} />
           <Route path="manage-quiz" element={<ManageQuiz />} />
@@ -41,6 +57,7 @@ const Layout = (props) => {
 
         <Route path="/login" element={<Login />} />
         <Route path="/sign_up" element={<SignUp />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
 
