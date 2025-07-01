@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getQuizByUser } from "../../services/apiServices";
 import "./ListQuiz.scss";
 import { useNavigate } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 
 const ListQuiz = (props) => {
   const [arrQuiz, setArrQuiz] = useState([]);
@@ -26,33 +26,40 @@ const ListQuiz = (props) => {
           arrQuiz.length > 0 &&
           arrQuiz.map((item, index) => {
             return (
-              <div
-                className="card "
-                // style={{ width: "18rem" }}
-                key={`list-quiz-${index}`}
+              <Col
+                xs={{ span: 12 }}
+                sm={{ span: 6 }}
+                md={{ span: 4 }}
+                lg={{ span: 3 }}
               >
-                <div className="card-img">
-                  <img
-                    src={`data:image/jpeg;base64,${item.image}`}
-                    className="card-img-top"
-                    alt="..."
-                  />
+                <div
+                  className="card "
+                  // style={{ width: "18rem" }}
+                  key={`list-quiz-${index}`}
+                >
+                  <div className="card-img">
+                    <img
+                      src={`data:image/jpeg;base64,${item.image}`}
+                      className="card-img-top"
+                      alt="..."
+                    />
+                  </div>
+                  <div className="card-body ">
+                    <h5 className="card-title">Quiz {index + 1}</h5>
+                    <p className="card-text">{item.description}</p>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() =>
+                        navigate(`/quiz/${item.id}`, {
+                          state: { quizTitle: item.description },
+                        })
+                      }
+                    >
+                      Start now
+                    </button>
+                  </div>
                 </div>
-                <div className="card-body ">
-                  <h5 className="card-title">Quiz {index + 1}</h5>
-                  <p className="card-text">{item.description}</p>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() =>
-                      navigate(`/quiz/${item.id}`, {
-                        state: { quizTitle: item.description },
-                      })
-                    }
-                  >
-                    Start now
-                  </button>
-                </div>
-              </div>
+              </Col>
             );
           })}
 

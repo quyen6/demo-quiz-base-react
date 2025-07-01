@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ManageQuiz.scss";
 import Select from "react-select";
 import { faPlusCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   deleteQuiz,
   getAllQuizForAdmin,
@@ -14,6 +14,7 @@ import TableQuiz from "./TableQuiz";
 import { Accordion, Modal } from "react-bootstrap";
 import QuizQA from "./QuizQA";
 import AssignQuiz from "./AssignQuiz";
+import _ from "lodash";
 
 const options = [
   { value: "EASY", label: "EASY" },
@@ -145,6 +146,22 @@ const ManageQuiz = (props) => {
       setShowModalDeleteQuiz(false);
     }
   };
+  const validateDesc = useCallback(
+    _.debounce((value) => {
+      const wordCount = value.trim().split(/\s+/).length;
+      if (wordCount <= 20) {
+        toast.error("Mô tả phải dài hơn 30 từ.");
+      }
+    }, 10000),
+    [] // chỉ tạo 1 lần duy nhất
+  );
+
+  const handleDescriptionChange = (e) => {
+    const value = e.target.value;
+    setDescription(value);
+    validateDesc(value); // gọi debounce
+  };
+
   return (
     <div className="manage-quiz-container">
       <Accordion alwaysOpen>
@@ -175,7 +192,7 @@ const ManageQuiz = (props) => {
                     className="form-control"
                     placeholder="Description"
                     value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    onChange={(e) => handleDescriptionChange(e)}
                   />
                   <label>Description</label>
                 </div>
