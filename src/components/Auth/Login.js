@@ -62,6 +62,12 @@ const Login = (props) => {
       setLoading(false);
     }
   };
+
+  const handleKeyDown = (e) => {
+    if (e && e.key === "Enter") {
+      handleLogin();
+    }
+  };
   return (
     <div className="login-container">
       <div className="header col-12 d-flex justify-content-end align-items-center">
@@ -96,6 +102,7 @@ const Login = (props) => {
               className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => handleKeyDown(e)}
             />
           </div>
           <div className="forgot-password">Forgot password ?</div>
