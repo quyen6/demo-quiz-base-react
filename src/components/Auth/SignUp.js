@@ -6,6 +6,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { postSignUp } from "../../services/apiServices";
 import _ from "lodash";
+import Language from "../Header/Language";
+import { Container } from "react-bootstrap";
 
 const SignUp = (props) => {
   const navigate = useNavigate();
@@ -80,88 +82,91 @@ const SignUp = (props) => {
   };
 
   return (
-    <div className="signup-container">
-      <div className="header col-12 d-flex justify-content-end align-items-center">
-        <span>Already have an account yet?</span>&nbsp;
-        <button
-          className="btn-signup"
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          Log in
-        </button>
-      </div>
-      <div className="content col-4 mx-auto mt-5">
-        <div className="content-welcome">Let's create your account</div>
-        <div className="content-form">
-          <form
-          // onSubmit={(e) => {
-          //   e.preventDefault();
-          //   if (e.target.checkValidity()) {
-          //     handleSignUp(); // xử lý khi hợp lệ
-          //   } else {
-          //     e.target.reportValidity(); // hiện lỗi cho người dùng
-          //   }
-          // }}
+    <Container>
+      <div className="signup-container">
+        <div className="header col-12 d-flex justify-content-end align-items-center">
+          <span>Already have an account yet?</span>&nbsp;
+          <button
+            className="btn-signup mx-2"
+            onClick={() => {
+              navigate("/login");
+            }}
           >
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                className="form-control"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <div className="password-input ">
-                <input
-                  type={type}
-                  className="form-control password-input "
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-
-                <i>
-                  {" "}
-                  <FontAwesomeIcon
-                    icon={showPassword && showPassword ? faEye : faEyeSlash}
-                    onClick={() => handleToggle()}
-                  />
-                </i>
-              </div>
-            </div>
-            <div className="form-group">
-              <label>Username</label>
-              <input
-                type="text"
-                className="form-control"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn-signup col-12"
-              onClick={(e) => handleSignUp(e)}
+            Log in
+          </button>
+          <Language />
+        </div>
+        <div className="content col-xl-4 col-lg-4 col-md-6 col-sm-10 col-10 mx-auto mt-5">
+          <div className="content-welcome">Let's create your account</div>
+          <div className="content-form">
+            <form
+            // onSubmit={(e) => {
+            //   e.preventDefault();
+            //   if (e.target.checkValidity()) {
+            //     handleSignUp(); // xử lý khi hợp lệ
+            //   } else {
+            //     e.target.reportValidity(); // hiện lỗi cho người dùng
+            //   }
+            // }}
             >
-              Create my free account
-            </button>
-          </form>
-          <div
-            className="back text-center"
-            onClick={() => navigate("/")}
-            style={{ cursor: "pointer" }}
-          >
-            &lt; Go to HomePage
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Password</label>
+                <div className="password-input ">
+                  <input
+                    type={type}
+                    className="form-control password-input "
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+
+                  <i>
+                    {" "}
+                    <FontAwesomeIcon
+                      icon={showPassword && showPassword ? faEye : faEyeSlash}
+                      onClick={() => handleToggle()}
+                    />
+                  </i>
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Username</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn-signup col-12"
+                onClick={(e) => handleSignUp(e)}
+              >
+                Create my free account
+              </button>
+            </form>
+            <div
+              className="back text-center"
+              onClick={() => navigate("/")}
+              style={{ cursor: "pointer" }}
+            >
+              &lt; Go to HomePage
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
