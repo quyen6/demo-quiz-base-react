@@ -16,7 +16,7 @@ const Question = (props) => {
   return (
     <>
       {data.image && (
-        <div className="q-image text-center">
+        <div key={`img`} className="q-image text-center">
           <img
             onClick={() => setIsPreviewImage(true)}
             src={`data:image/jpeg;base64,${data.image}`}
