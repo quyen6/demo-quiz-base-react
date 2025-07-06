@@ -12,7 +12,7 @@ const Language = (props) => {
       <NavDropdown
         title={lngs[i18n.resolvedLanguage]?.nativeName || "Language"}
         id="language-nav-dropdown"
-        className="no-caret"
+        className="language no-caret m-1"
       >
         {Object.keys(lngs).map((lng) => (
           <NavDropdown.Item

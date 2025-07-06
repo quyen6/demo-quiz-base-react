@@ -6,9 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.dropdown-toggle::after {
-  display: none !important;
-}
 
 .app-container {
   .header-container {
@@ -102,6 +99,11 @@ body {
       &:hover {
         opacity: 0.85;
         transition: all 0.2s linear;
+      }
+    }
+    .language {
+      .navbar .no-caret .dropdown-toggle::after {
+        display: none !important;
       }
     }
   }

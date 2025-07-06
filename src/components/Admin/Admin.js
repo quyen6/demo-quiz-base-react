@@ -1,17 +1,21 @@
 import SideBar from "./SideBar";
 import "./Admin.scss";
 import { Outlet } from "react-router-dom";
-import { NavLink } from "react-bootstrap";
+import { NavDropdown, NavLink } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Language from "../Header/Language";
 const Admin = (props) => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   return (
     <div className="admin-container">
-      <div className="admin-header" style={{ height: "auto", width: "100%" }}>
+      <div
+        className="admin-header d-flex justify-content-between"
+        style={{ height: "auto", width: "100%" }}
+      >
         <div className="sidebar-header d-flex align-items-center">
           <span className="sidebar-toggle">
             <FontAwesomeIcon
@@ -32,6 +36,14 @@ const Admin = (props) => {
           {/* <div onClick={() => setCollapsed(!collapsed)} className="btn-toggle">
                   <FontAwesomeIcon icon={faBars} />
                 </div> */}
+        </div>
+
+        <div className="setting">
+          <Language />
+          <NavDropdown title="Setting" id="basic-nav-dropdown">
+            <NavDropdown.Item>Profile</NavDropdown.Item>
+            <NavDropdown.Item>Log out</NavDropdown.Item>
+          </NavDropdown>
         </div>
       </div>
       <div className="admin-content" style={{ height: "auto", width: "100%" }}>

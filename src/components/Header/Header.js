@@ -61,6 +61,7 @@ const Header = () => {
               Admin{" "}
             </NavLink>
           </Nav>
+          <Language />
           <Nav>
             {isAuthenticated === false ? (
               <>
@@ -84,7 +85,6 @@ const Header = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             )}
-            <Language />
           </Nav>
         </Navbar.Collapse>
       </Container>
