@@ -3,8 +3,9 @@ import { TypeAnimation } from "react-type-animation";
 import videohomepage from "../../assets/homepage.mp4";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { useTranslation, Trans } from "react-i18next";
 const HomePage = (props) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
@@ -61,7 +62,7 @@ const HomePage = (props) => {
                     1500,
                     "Win big 🎯",
                     1500,
-                    "Your brain vs. the quiz!",
+                    "Your brain vs. quiz!",
                     1500,
                   ]}
                   speed={50}
@@ -81,15 +82,15 @@ const HomePage = (props) => {
               <div className="homepage-text text-start  my-xxl-5 my-lg-4 ">
                 <Col xs={12} sm={12} md={8} lg={10} xl={9}>
                   <p style={{ fontSize: "clamp(1rem, 1.15rem, 1.25rem)" }}>
-                    Create questions and tests quickly with smart solutions.
-                    <strong> MQ </strong>
-                    leverages the power of technology to enhance your learning
-                    experience.
+                    <Trans
+                      i18nKey="homepage.homepagetext"
+                      components={{ strong: <strong /> }}
+                    />
                   </p>
                 </Col>
               </div>
               <div className="btn-homepage text-start ">
-                <Col xs={12} sm={6} md={4} lg={6} xl={6}>
+                <Col xs={12} sm={6} md={10} lg={10} xl={6}>
                   {isAuthenticated ? (
                     <button
                       className="btn-get-started w-100 "
