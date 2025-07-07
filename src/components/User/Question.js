@@ -1,7 +1,9 @@
 import _ from "lodash";
 import { useState } from "react";
 import Lightbox from "react-awesome-lightbox";
+import { useTranslation } from "react-i18next";
 const Question = (props) => {
+  const { t } = useTranslation();
   const { data, currentQuestion, handleCheckbox } = props;
 
   const [isPreviewImage, setIsPreviewImage] = useState(false);
@@ -34,7 +36,8 @@ const Question = (props) => {
       )}
       <div className="question ">
         <h6>
-          Question {currentQuestion + 1}: {data.questionDescription}{" "}
+          {t("user.detailquiz.question")} {currentQuestion + 1}:{" "}
+          {data.questionDescription}{" "}
         </h6>
       </div>
       <div className="answers">

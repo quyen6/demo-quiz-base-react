@@ -13,8 +13,10 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { getOverView } from "../../../services/apiServices";
+import { useTranslation } from "react-i18next";
 
 const Dashboard = (props) => {
+  const { t } = useTranslation();
   const [dataOverView, setDataOverView] = useState([]);
   const [dataChart, setDataChart] = useState([]);
 
@@ -38,15 +40,15 @@ const Dashboard = (props) => {
 
       const data = [
         {
-          name: "Quiz",
+          name: `${t("admin.content.dashboard.r-name.quiz")}`,
           Qz: Qz,
         },
         {
-          name: "Question",
+          name: `${t("admin.content.dashboard.r-name.ques")}`,
           Qs: Qs,
         },
         {
-          name: "Answers",
+          name: `${t("admin.content.dashboard.r-name.ans")}`,
           As: As,
         },
       ];
@@ -56,27 +58,35 @@ const Dashboard = (props) => {
   };
   return (
     <div className="dashboard-container">
-      <div className="title">Analytics Dashboard</div>
+      <div className="title">{t("admin.content.dashboard.title")}</div>
       <div className="content col-12">
         <div className="left ">
-          <div className="square  ">
-            <span className="text-1">Total Users</span>
+          <div className="square ">
+            <span className="text-1 totalusers">
+              {t("admin.content.dashboard.l-text-1.totalusers")}
+            </span>
             <span className="text-2">{dataOverView?.users?.total || `NA`}</span>
           </div>
           <div className="square  ">
-            <span className="text-1">Total Quiz</span>
+            <span className="text-1 totalquiz">
+              {t("admin.content.dashboard.l-text-1.totalquiz")}
+            </span>
             <span className="text-2">
               {dataOverView?.others?.countQuiz || `NA`}
             </span>
           </div>
           <div className="square  ">
-            <span className="text-1">Total Questions</span>
+            <span className="text-1  totalques">
+              {t("admin.content.dashboard.l-text-1.totalques")}
+            </span>
             <span className="text-2">
               {dataOverView?.others?.countQuestions || `NA`}
             </span>
           </div>
           <div className="square  ">
-            <span className="text-1">Total Answers</span>
+            <span className="text-1 totalans">
+              {t("admin.content.dashboard.l-text-1.totalans")}
+            </span>
             <span className="text-2">
               {dataOverView?.others?.countAnswers || `NA`}
             </span>
@@ -89,9 +99,21 @@ const Dashboard = (props) => {
               {/* <YAxis /> */}
               <Tooltip />
               <Legend />
-              <Bar dataKey="Qz" fill="#8884d8" name="Quiz" />
-              <Bar dataKey="Qs" fill="#82ca9d" name="Question" />
-              <Bar dataKey="As" fill="#ffc658" name="Answers" />
+              <Bar
+                dataKey="Qz"
+                fill="#8884d8"
+                name={t("admin.content.dashboard.r-name.quiz")}
+              />
+              <Bar
+                dataKey="Qs"
+                fill="#82ca9d"
+                name={t("admin.content.dashboard.r-name.ques")}
+              />
+              <Bar
+                dataKey="As"
+                fill="#ffc658"
+                name={t("admin.content.dashboard.r-name.ans")}
+              />
             </ComposedChart>
           </ResponsiveContainer>
         </div>

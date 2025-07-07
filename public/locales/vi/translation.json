@@ -1,5 +1,99 @@
 {
+  "header": {
+    "home": "Trang chủ",
+    "users": "Người dùng",
+    "admin": "Quản trị",
+    "login": "Đăng nhập",
+    "signup": "Đăng kí",
+    "profile": "Hồ sơ",
+    "logout": "Đăng xuất",
+    "setting": "Cài đặt"
+  },
   "homepage": {
-    "homepagetext": "Tạo câu hỏi và kiểm tra nhanh chóng với các giải pháp thông minh. <strong> MQ </strong> Tận dụng sức mạnh của công nghệ để tăng cường học tập của bạn kinh nghiệm."
+    "homepagetitle": "Thách thức trí óc của bạn!",
+    "homepagetext": "Tạo câu hỏi và kiểm tra nhanh chóng với các giải pháp thông minh. <strong> MQ </strong> Tận dụng sức mạnh của công nghệ để tăng cường học tập của bạn kinh nghiệm.",
+    "typeSequence": [
+      "Nghĩ nhanh 🔥",
+      "Chạm thông minh 🧠",
+      "Chiến thắng lớn 🎯",
+      "Não của bạn vs. quiz!"
+    ],
+    "h1": " Bạn đã sẵn sàng chưa ?",
+    "btn-homepage1": "Giải đố ngay",
+    "btn-homepage2": "Bắt đầu - Miễn phí"
+  },
+  "user": {
+    "listquiz": {
+      "card-title": "Trắc nghiệm",
+      "btnstart": "Bắt đầu ngay",
+      "noquiz": "Hiện tại bạn không có bài kiểm tra nào..."
+    },
+    "detailquiz": {
+      "title": "Trắc nghiệm",
+      "prev": "Trước",
+      "next": "Tiếp",
+      "finish": "Kết thúc",
+      "question": "Câu hỏi",
+      "modalresult": {
+        "title": "Kết Quả Của Bạn...",
+        "total-q": "Tổng Câu Hỏi",
+        "total-a-correct": "Tổng Câu Trả Lời Đúng:",
+        "btnshow": "Hiện Đáp Án",
+        "btnclose": "Đóng"
+      }
+    }
+  },
+  "admin": {
+    "header": {
+      "profile": "Hồ sơ",
+      "logout": "Đăng xuất",
+      "setting": "Cài đặt"
+    },
+    "sidebar": {
+      "dashboard": "Phân tích",
+      "labelfeatures": {
+        "features": "Tính năng",
+        "manage": {
+          "user": "Quản lý Người dùng",
+          "quiz": "Quản lý Trắc nghiệm",
+          "ques": "Quản lý Câu hỏi"
+        }
+      }
+    },
+    "content": {
+      "dashboard": {
+        "title": "Tổng quan phân tích",
+        "l-text-1": {
+          "totalusers": "Tổng Người dùng",
+          "totalquiz": "Tổng Trắc nghiệm",
+          "totalques": "Tổng Câu hỏi",
+          "totalans": "Tổng Câu trả lời"
+        },
+
+        "r-name": {
+          "quiz": "Trắc nghiệm",
+          "ques": "Câu hỏi",
+          "ans": "Câu trả lời"
+        }
+      },
+      "manage-user": {
+        "title": "Quản lý Người dùng",
+        "btn-add": "Thêm người dùng mới",
+        "table": {
+          "name": "Tên",
+          "role": {
+            "title": "Vai trò",
+            "USER": "Người dùng",
+            "ADMIN": "Quản trị viên"
+          },
+          "action": {
+            "title": "Hành Động",
+            "view": "Xem",
+            "edit": "Sửa",
+            "delete": "Xóa"
+          }
+        }
+      }
+    }
   }
 }

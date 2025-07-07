@@ -1,5 +1,98 @@
 {
+  "header": {
+    "home": "Home",
+    "users": "Users",
+    "admin": "Admin",
+    "login": "Log in",
+    "signup": "Sign Up",
+    "profile": "Profile",
+    "logout": "Log out",
+    "setting": "Setting"
+  },
   "homepage": {
-    "homepagetext": " Create questions and tests quickly with smart solutions. <strong>MQ</strong> leverages the power of technology to enhance your learning experience."
+    "homepagetitle": "Challenge your mind!",
+    "homepagetext": " Create questions and tests quickly with smart solutions. <strong>MQ</strong> leverages the power of technology to enhance your learning experience.",
+    "typeSequence": [
+      "Think fast 🔥",
+      "Click smart 🧠",
+      "Win big 🎯",
+      "Your brain vs. quiz!"
+    ],
+    "h1": " Are you ready ?",
+    "btn-homepage1": "Doing Quiz Now",
+    "btn-homepage2": " Get-started - It's free"
+  },
+  "user": {
+    "listquiz": {
+      "card-title": "Quiz",
+      "btnstart": "Start now",
+      "noquiz": "You dont have any quiz now..."
+    },
+    "detailquiz": {
+      "title": "Quiz",
+      "prev": "Prev",
+      "next": "Next",
+      "finish": "Finish",
+      "question": "Question",
+      "modalresult": {
+        "title": "Your Result...",
+        "total-q": "Total Question",
+        "total-a-correct": "Total Correct answers:",
+        "btnshow": "Show Answer",
+        "btnclose": "Close"
+      }
+    }
+  },
+  "admin": {
+    "header": {
+      "profile": "Profile",
+      "logout": "Log out",
+      "setting": "Setting"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "labelfeatures": {
+        "features": "Features",
+        "manage": {
+          "user": "Manage Users",
+          "quiz": "Manage Quiz",
+          "ques": "Manage Questions"
+        }
+      }
+    },
+    "content": {
+      "dashboard": {
+        "title": "Analytics Dashboard",
+        "l-text-1": {
+          "totalusers": "Total Users",
+          "totalquiz": "Total Quiz",
+          "totalques": "Total Questions",
+          "totalans": "Total Answers"
+        },
+        "r-name": {
+          "quiz": "Quiz",
+          "ques": "Questions",
+          "ans": "Answers"
+        }
+      },
+      "manage-user": {
+        "title": "Manage User",
+        "btn-add": "Add new user",
+        "table": {
+          "name": "Username",
+          "role": {
+            "title": "Role",
+            "USER": "USER",
+            "ADMIN": "ADMIN"
+          },
+          "action": {
+            "title": "Action",
+            "view": "View",
+            "edit": "Edit",
+            "delete": "Delete"
+          }
+        }
+      }
+    }
   }
 }

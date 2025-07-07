@@ -5,8 +5,9 @@ import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
-
+import { useTranslation } from "react-i18next";
 const TableUserPaginate = (props) => {
+  const { t } = useTranslation();
   const {
     listUser,
     handleClickBtnUpdateUser,
@@ -28,10 +29,10 @@ const TableUserPaginate = (props) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Username</th>
+            <th>{t("admin.content.manage-user.table.name")}</th>
             <th>Emai</th>
-            <th>Role</th>
-            <th>Action</th>
+            <th>{t("admin.content.manage-user.table.role.title")}</th>
+            <th>{t("admin.content.manage-user.table.action.title")}</th>
           </tr>
         </thead>
         <tbody>
@@ -43,28 +44,31 @@ const TableUserPaginate = (props) => {
                   <td>{user.id}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
-                  <td>{user.role}</td>
+                  <td>
+                    {t(`admin.content.manage-user.table.role.${user.role}`)}
+                  </td>
                   <td className="d-flex gap-3">
                     <button
                       className="btn btn-secondary"
                       onClick={() => handleClickBtnViewUser(user)}
                     >
                       <FontAwesomeIcon icon={faEye} />
-                      &nbsp; View
+                      &nbsp; {t("admin.content.manage-user.table.action.view")}
                     </button>
                     <button
                       className="btn btn-warning"
                       onClick={() => handleClickBtnUpdateUser(user)}
                     >
                       <FontAwesomeIcon icon={faPen} />
-                      &nbsp; Edit
+                      &nbsp; {t("admin.content.manage-user.table.action.edit")}
                     </button>
                     <button
                       className="btn btn-danger"
                       onClick={() => handleClickBtnDeleteUser(user)}
                     >
                       <FontAwesomeIcon icon={faTrash} />
-                      &nbsp; Delete
+                      &nbsp;{" "}
+                      {t("admin.content.manage-user.table.action.delete")}
                     </button>
                   </td>
                 </tr>

@@ -14,9 +14,11 @@ import {
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SideBar = (props) => {
   const { collapsed } = props;
+  const { t } = useTranslation();
   return (
     <Sidebar
       collapsed={collapsed}
@@ -67,10 +69,10 @@ const SideBar = (props) => {
               />
             }
           >
-            Dashboard
+            {t("admin.sidebar.dashboard")}
           </MenuItem>
           <SubMenu
-            label="Features"
+            label={t("admin.sidebar.labelfeatures.features")}
             icon={
               <FontAwesomeIcon icon={faGears} style={{ fontSize: "20px" }} />
             }
@@ -79,19 +81,19 @@ const SideBar = (props) => {
               icon={<FontAwesomeIcon icon={faUsers} />}
               component={<Link to="manage-users" />}
             >
-              &nbsp; Manage Users
+              &nbsp; {t("admin.sidebar.labelfeatures.manage.user")}
             </MenuItem>
             <MenuItem
               icon={<FontAwesomeIcon icon={faNoteSticky} />}
               component={<Link to="manage-quiz" />}
             >
-              &nbsp; Manage Quiz
+              &nbsp; {t("admin.sidebar.labelfeatures.manage.quiz")}
             </MenuItem>
             <MenuItem
               icon={<FontAwesomeIcon icon={faClipboardQuestion} />}
               component={<Link to="manage-questions" />}
             >
-              &nbsp; Manage Questions
+              &nbsp; {t("admin.sidebar.labelfeatures.manage.ques")}
             </MenuItem>
           </SubMenu>
         </Menu>

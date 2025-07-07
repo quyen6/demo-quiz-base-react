@@ -1,6 +1,8 @@
 import Modal from "react-bootstrap/Modal";
+import { useTranslation } from "react-i18next";
 
 const ModalResult = (props) => {
+  const { t } = useTranslation();
   const { show, setShow, dataModalResult } = props;
 
   const handleClose = () => setShow(false);
@@ -14,24 +16,26 @@ const ModalResult = (props) => {
         className="modal-result"
       >
         <Modal.Header>
-          <Modal.Title>Your Result...</Modal.Title>
+          <Modal.Title>{t("user.detailquiz.modalresult.title")}</Modal.Title>
           {/* <p>Deleting this profile will remove all personal data</p> */}
         </Modal.Header>
 
         <Modal.Body>
-          <div>
-            Total Question: <b>{dataModalResult.countTotal}</b>
+          <div className="total-q">
+            {t("user.detailquiz.modalresult.total-q")}:{" "}
+            <b>{dataModalResult.countTotal}</b>
           </div>
-          <div>
-            Total Correct answers: <b>{dataModalResult.countCorrect}</b>
+          <div className="total-a-correct">
+            {t("user.detailquiz.modalresult.total-a-correct")}{" "}
+            <b>{dataModalResult.countCorrect}</b>
           </div>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-end modal-result-footer">
           <button className="btn btn-warning " onClick={handleClose}>
-            Show Answer
+            {t("user.detailquiz.modalresult.btnshow")}
           </button>
           <button className="btn btn-secondary " onClick={handleClose}>
-            Close
+            {t("user.detailquiz.modalresult.btnclose")}
           </button>
         </Modal.Footer>
       </Modal>

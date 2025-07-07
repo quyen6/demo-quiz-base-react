@@ -7,9 +7,11 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Language from "../Header/Language";
+import { useTranslation } from "react-i18next";
 const Admin = (props) => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <div className="admin-container">
       <div
@@ -40,9 +42,12 @@ const Admin = (props) => {
 
         <div className="setting">
           <Language />
-          <NavDropdown title="Setting" id="basic-nav-dropdown">
-            <NavDropdown.Item>Profile</NavDropdown.Item>
-            <NavDropdown.Item>Log out</NavDropdown.Item>
+          <NavDropdown
+            title={t("admin.header.setting")}
+            id="basic-nav-dropdown"
+          >
+            <NavDropdown.Item>{t("admin.header.profile")}</NavDropdown.Item>
+            <NavDropdown.Item>{t("admin.header.logout")}</NavDropdown.Item>
           </NavDropdown>
         </div>
       </div>

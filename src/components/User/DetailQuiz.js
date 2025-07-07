@@ -7,8 +7,10 @@ import Question from "./Question";
 import { useState } from "react";
 import ModalResult from "./ModalResult";
 import RightContent from "./QuizContent/RightContent";
+import { useTranslation } from "react-i18next";
 
 const DetailQuiz = (props) => {
+  const { t } = useTranslation();
   const params = useParams();
   const quizId = params.id;
 
@@ -132,7 +134,7 @@ const DetailQuiz = (props) => {
       <div className="left-content">
         <div className="title">
           <h2>
-            Quiz {quizId}: {location?.state?.quizTitle}
+            {t("user.detailquiz.title")} {quizId}: {location?.state?.quizTitle}
           </h2>
         </div>
         <hr />
@@ -147,13 +149,19 @@ const DetailQuiz = (props) => {
           />
         </div>
         <div className="footer mt-3">
-          <button onClick={() => handlePrev()}>Prev</button>
-          <button onClick={() => handleNext()}>Next</button>
+          <button onClick={() => handlePrev()}>
+            {" "}
+            {t("user.detailquiz.prev")}
+          </button>
+          <button onClick={() => handleNext()}>
+            {" "}
+            {t("user.detailquiz.next")}
+          </button>
           <button
             className="finish btn btn-success"
             onClick={() => handleFinishQuiz()}
           >
-            Finish
+            {t("user.detailquiz.finish")}
           </button>
         </div>
       </div>

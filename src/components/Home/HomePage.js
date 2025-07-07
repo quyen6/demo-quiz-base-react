@@ -4,10 +4,17 @@ import videohomepage from "../../assets/homepage.mp4";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
+import { useEffect } from "react";
+
 const HomePage = (props) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const typeSeq = t("homepage.typeSequence", { returnObjects: true });
+
+  useEffect(() => {
+    // có thể force update hoặc xử lý lại dữ liệu
+  }, [i18n.language]);
 
   return (
     <Container className="homepage-container ">
@@ -35,7 +42,7 @@ const HomePage = (props) => {
                 }}
               >
                 <source src={videohomepage} type="video/mp4" />
-                Your browser does not support the video tag.
+                {/* Your browser does not support the video tag. */}
               </video>
             </div>
           </Col>
@@ -50,21 +57,13 @@ const HomePage = (props) => {
               <div className="homepage-title text-start w-100 ">
                 <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                   <h1 style={{ fontSize: "clamp(1.5rem, 3vw, 3rem)" }}>
-                    Challenge your mind!
+                    {t("homepage.homepagetitle")}
                   </h1>
                 </Col>
 
                 <TypeAnimation
-                  sequence={[
-                    "Think fast 🔥",
-                    1500,
-                    "Click smart 🧠",
-                    1500,
-                    "Win big 🎯",
-                    1500,
-                    "Your brain vs. quiz!",
-                    1500,
-                  ]}
+                  key={i18n.language}
+                  sequence={typeSeq.flatMap((text) => [text, 1500])}
                   speed={50}
                   style={{
                     fontSize: "clamp(1.5rem, 3vw, 3rem)",
@@ -75,7 +74,7 @@ const HomePage = (props) => {
                 />
                 <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                   <h1 style={{ fontSize: "clamp(1.5rem, 3vw, 3rem)" }}>
-                    Are you ready ?
+                    {t("homepage.h1")}
                   </h1>
                 </Col>
               </div>
@@ -96,14 +95,14 @@ const HomePage = (props) => {
                       className="btn-get-started w-100 "
                       onClick={() => navigate("/users")}
                     >
-                      Doing Quiz Now
+                      {t("homepage.btn-homepage1")}
                     </button>
                   ) : (
                     <button
                       className="btn-get-started w-100 "
                       onClick={() => navigate("/login")}
                     >
-                      Get-started - It's free
+                      {t("homepage.btn-homepage2")}
                     </button>
                   )}
                 </Col>
