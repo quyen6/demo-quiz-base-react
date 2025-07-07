@@ -105,6 +105,11 @@ const ManageQuiz = (props) => {
       toast.error("Name, Description and Image are required!");
       return;
     }
+    const wordCount = description.trim().split(/\s+/).length;
+    if (wordCount <= 10) {
+      toast.error("Description must have length more than 10 words!");
+      return;
+    }
 
     let res = await putUpdateQuiz(
       id,
@@ -146,20 +151,21 @@ const ManageQuiz = (props) => {
       setShowModalDeleteQuiz(false);
     }
   };
-  const validateDesc = useCallback(
-    _.debounce((value) => {
-      const wordCount = value.trim().split(/\s+/).length;
-      if (wordCount <= 20) {
-        toast.error("Mô tả phải dài hơn 30 từ.");
-      }
-    }, 10000),
-    [] // chỉ tạo 1 lần duy nhất
-  );
+  // const validateDesc = useCallback(
+  //   _.debounce((value) => {
+  //     const wordCount = value.trim().split(/\s+/).length;
+  //     if (wordCount <= 10) {
+  //       toast.error("Description must be more than 10 words long!");
+  //       return;
+  //     }
+  //   }, 5000),
+  //   [] // chỉ tạo 1 lần duy nhất
+  // );
 
   const handleDescriptionChange = (e) => {
     const value = e.target.value;
     setDescription(value);
-    validateDesc(value); // gọi debounce
+    //   validateDesc(value); // gọi debounce
   };
 
   return (

@@ -1,9 +1,17 @@
+// lightbox
+.awesome-lightbox {
+  z-index: 999999999 !important;
+}
+
 .detail-quiz-container {
   display: flex;
-  height: 1200px;
+  height: auto;
 
   .left-content {
-    border: 1px solid red;
+    border: 1px solid rgb(94, 93, 93);
+    border-radius: 8px;
+    padding: 20px;
+    border-right: transparent;
     flex: 2;
     width: 70%;
     .title {
@@ -18,7 +26,7 @@
       .q-image {
         margin-bottom: 20px;
         & img {
-          width: 80%;
+          width: 30%;
           object-fit: cover;
           cursor: pointer;
         }
@@ -62,11 +70,13 @@
     }
   }
   .right-content-container {
-    border: 1px solid green;
+    border: 1px solid rgb(94, 93, 93);
+    border-radius: 8px;
+    padding: 20px;
+    border-left: transparent;
     flex: 1;
     width: 30%;
     .main-timer {
-      border: 1px solid red;
       padding: 10px 20px;
       text-align: center;
       font-size: 26px;
