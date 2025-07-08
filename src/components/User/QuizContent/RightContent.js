@@ -1,7 +1,13 @@
 import CountDown from "./CountDown";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 const RightContent = (props) => {
-  const { dataQuiz, handleFinishQuiz, setCurrentQuestion } = props;
+  const {
+    dataQuiz,
+    handleFinishQuiz,
+    setCurrentQuestion,
+    currentQuestion,
+    isFinished,
+  } = props;
   const refClick = useRef([]);
 
   const onTimeUp = () => {
@@ -20,22 +26,27 @@ const RightContent = (props) => {
   };
   const handleClickQuestion = (index, question) => {
     setCurrentQuestion(index);
-    // Reset class for all first (optional, if you want only one "clicked")
+  };
+  useEffect(() => {
+    if (!dataQuiz || dataQuiz.length === 0) return;
+
+    // reset class toàn bộ
     refClick.current.forEach((ref, i) => {
       if (ref) {
         ref.className = getClassQuestion(i, dataQuiz[i]);
       }
     });
 
-    // Set clicked for current
-    if (refClick.current[index]) {
-      refClick.current[index].className += " clicked";
+    // gán class "clicked" cho câu hỏi hiện tại
+    if (refClick.current[currentQuestion]) {
+      refClick.current[currentQuestion].className += " clicked";
     }
-  };
+  }, [currentQuestion, dataQuiz]);
+
   return (
     <>
       <div className="main-timer">
-        <CountDown onTimeUp={onTimeUp} />
+        <CountDown onTimeUp={onTimeUp} isFinished={isFinished} />
       </div>
       <div className="main-questions">
         {dataQuiz &&

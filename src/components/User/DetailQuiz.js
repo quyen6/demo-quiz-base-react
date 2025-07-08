@@ -21,6 +21,7 @@ const DetailQuiz = (props) => {
   const [dataQuiz, setDataQuiz] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
+  const [isFinished, setIsFinished] = useState(false);
   const [showModalResult, setShowModalResult] = useState(false);
   const [dataModalResult, setDataModalResult] = useState({});
 
@@ -30,6 +31,7 @@ const DetailQuiz = (props) => {
 
   const fetchQuestion = async () => {
     let res = await getDataQuiz(quizId);
+
     if (res && res.EC === 0) {
       let raw = res.DT;
       let data = _.chain(raw)
@@ -90,6 +92,7 @@ const DetailQuiz = (props) => {
   };
 
   const handleFinishQuiz = async () => {
+    setIsFinished(true);
     // console.log("🚀 ~ handleFinishQuiz ~ dataQuiz:", dataQuiz);
     let payload = {
       quizId: +quizId,
@@ -186,6 +189,8 @@ const DetailQuiz = (props) => {
               dataQuiz={dataQuiz}
               handleFinishQuiz={handleFinishQuiz}
               setCurrentQuestion={setCurrentQuestion}
+              currentQuestion={currentQuestion}
+              isFinished={isFinished}
             />
           </div>
         </div>

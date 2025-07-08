@@ -1,6 +1,7 @@
 import {
   FETCH_USER_LOGIN_SUCCESS,
   USER_LOGOUT_SUCCESS,
+  UPDATE_INFORMATION,
 } from "../action/userAction";
 const INITIAL_STATE = {
   account: {
@@ -19,8 +20,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         account: {
-          access_token: action?.payload?.DT?.access_token,
-          refresh_token: action?.payload?.DT?.refresh_token,
+          access_token:
+            action?.payload?.DT?.access_token || state.account.access_token,
+          refresh_token:
+            action?.payload?.DT?.refresh_token || state.account.refresh_tokens,
           username: action?.payload?.DT?.username,
           image: action?.payload?.DT?.image,
           role: action?.payload?.DT?.role,
@@ -40,6 +43,15 @@ const userReducer = (state = INITIAL_STATE, action) => {
           email: "",
         },
         isAuthenticated: false,
+      };
+
+    case UPDATE_INFORMATION:
+      return {
+        ...state,
+        account: {
+          ...state.account, // giữ lại access_token, refresh_token,...
+          ...action.payload, // ghi đè những trường mới như username, image,...
+        },
       };
     default:
       return state;

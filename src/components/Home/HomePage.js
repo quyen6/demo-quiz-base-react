@@ -10,6 +10,7 @@ const HomePage = (props) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  // const roleUSer = useSelector((state) => state.user.account.role);
   const typeSeq = t("homepage.typeSequence", { returnObjects: true });
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const HomePage = (props) => {
             sm={{ span: 12, order: 2 }}
             md={{ span: 12, order: 2 }}
             lg={{ span: 6, order: 2 }}
-            className="homepage-video"
+            className="homepage-video text-center"
           >
             <div>
               <video

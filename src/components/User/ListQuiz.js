@@ -27,6 +27,7 @@ const ListQuiz = (props) => {
           arrQuiz.map((item, index) => {
             return (
               <Col
+                key={index}
                 xs={{ span: 12 }}
                 sm={{ span: 6 }}
                 md={{ span: 4 }}

@@ -27,7 +27,6 @@ const Dashboard = (props) => {
   const fetchDataOverView = async () => {
     let res = await getOverView();
     if (res && res.EC === 0) {
-      console.log("🚀 ~ fetchDataOverView ~ res:", res);
       setDataOverView(res.DT);
 
       // process data
@@ -52,7 +51,7 @@ const Dashboard = (props) => {
           As: As,
         },
       ];
-      console.log("🚀 ~ fetchDataOverView ~ data:", data);
+
       setDataChart(data);
     }
   };

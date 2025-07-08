@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const CountDown = (props) => {
-  const { onTimeUp } = props;
+  const { onTimeUp, isFinished } = props;
   const [duration, setDuration] = useState(300);
-
+  const timerRef = useRef(null);
   const toHHMMSS = (secs) => {
     const sec_num = parseInt(secs, 10);
     const hours = Math.floor(sec_num / 3600);
@@ -17,21 +17,31 @@ const CountDown = (props) => {
   };
 
   useEffect(() => {
-    if (duration === 0) {
-      onTimeUp();
-      return;
+    if (isFinished) {
+      clearInterval(timerRef.current);
+      setDuration(0);
     }
-    const timer = setInterval(() => {
-      setDuration(duration - 1);
+  }, [isFinished]);
+
+  // Đếm ngược
+  useEffect(() => {
+    if (duration === 0 || isFinished) return;
+
+    timerRef.current = setInterval(() => {
+      setDuration((prev) => {
+        if (prev <= 1) {
+          clearInterval(timerRef.current);
+          onTimeUp();
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
 
-    // setTimeout(() => {
-
-    // }, 5000);
     return () => {
-      clearInterval(timer);
+      clearInterval(timerRef.current);
     };
-  }, [duration]);
+  }, [duration, isFinished]);
   return <div className="countdown-container">{toHHMMSS(duration)}</div>;
 };
 

@@ -133,6 +133,23 @@ const postLogOut = (email, refresh_token) => {
 const getOverView = () => {
   return axios.get(`/api/v1/overview`);
 };
+
+const postUpdateProfile = (username, userImage) => {
+  return axios.post(`/api/v1/profile`, { username, userImage });
+};
+const postChangePassword = (current_password, new_password) => {
+  return axios.post(`api/v1/change-password`, {
+    current_password,
+    new_password,
+  });
+};
+const getSHowHistory = () => {
+  return axios.get(`/api/v1/history`);
+};
+const getQuizById = (quizId) => {
+  return axios.get(`/api/v1/quiz/${quizId}`);
+};
+
 export {
   postCreateUser,
   getAllUser,
@@ -155,4 +172,8 @@ export {
   postUpsertQA,
   postLogOut,
   getOverView,
+  postUpdateProfile,
+  postChangePassword,
+  getSHowHistory,
+  getQuizById,
 };
